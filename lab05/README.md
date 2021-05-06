@@ -1,5 +1,6 @@
 # Sobre o projeto:
 Simulação de um jogo de damas em Java.  
+  
 Para executar o jogo faça, na pasta [bin](./bin):
 ```
 java mc322.lab05x entrada saida
