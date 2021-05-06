@@ -10,4 +10,4 @@ onde *entrada* e *saida* são os caminhos do arquivo csv com os comandos de entr
 Na pasta [data](./data) você pode encontrar alguns arquivos de teste para entrada.
 
 # Código do projeto:
-Os arquivos em JAVA do projeto podem ser vistos em [src/mc322/lab05a](./src/mc322/lab05a) e [src/mc322/lab05b](./src/mc322/lab05b).
+Os arquivos em JAVA do projeto podem ser vistos em [src/mc322/lab05a](./src/mc322/lab05a) e em [src/mc322/lab05b](./src/mc322/lab05b).
