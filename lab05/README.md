@@ -3,7 +3,7 @@ Simulação de um jogo de damas em Java.
   
 Para executar o jogo faça, na pasta [bin](./bin):
 ```
-java mc322.lab05x entrada saida
+java mc322.lab05x.AppDama entrada saida
 ```
 onde *entrada* e *saida* são os caminhos do arquivo csv com os comandos de entrada e o caminho do arquivo no qual será salvo o estado final do tabuleiro após a execução do jogo e *x* refere-se à versão do código que se pretende executar, a ou b.  
   
