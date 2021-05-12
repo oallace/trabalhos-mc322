@@ -5,10 +5,12 @@ public class Sala {
 	private int posicao[] = new int[2];
 	private Componente componentePrimario;
 	private Componente componenteSecundario;
+	private Caverna caverna;
 	
 	
 	
-	Sala(int iSala, int jSala, Componente componentePrimario, Componente componenteSecundario) {
+	Sala(Caverna caverna, int iSala, int jSala, Componente componentePrimario, Componente componenteSecundario) {
+		this.caverna = caverna;
 		this.visivel = '-';
 		this.componentePrimario = componentePrimario;
 		this.componenteSecundario = componenteSecundario;
