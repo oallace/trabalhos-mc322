@@ -4,12 +4,27 @@ public class Caverna
 {
     private Sala salas[][];
 
-    /**
-     * @param entrada: arquivo CSV com informações de como montar a caverna
-     */
-    Caverna(String entrada)
+    
+    Caverna()
     {
-        //
+        salas = new Sala[4][4];
+        
+        for (int i = 0; i < 4; i++) {
+        	for (int j = 0; j < 4; j++) {
+        		salas[i][j] = new Sala(this, i, j, null, null);
+        	}
+        }
+        
+        setComponente(0, 0, new Heroi());
+    }
+    
+    
+    public void setComponente(int iComponente, int jComponente, Componente componente) {
+    	this.salas[iComponente][jComponente].setComponentePrimario(componente);
+    }
+    
+    public Sala getSala(int iSala, int jSala) {
+    	return this.salas[iSala][jSala];
     }
 
     // recebe uma solicitação e executa a movimentação do herói se for possivel.
