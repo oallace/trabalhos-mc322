@@ -7,6 +7,7 @@ public class Componente
 	
 	
 	
+	
 	Componente(Caverna caverna, int iComponente, int jComponente) {
 		this.caverna = caverna;
 		this.posicao[0] = iComponente;
@@ -39,10 +40,33 @@ public class Componente
 		else (this instanceof Wumpu)
 			Fedor componenteSecundario = new Fedor();
 		
-		// Colocar abaixo o componenteSecundario nas posicoes disponiveis ao redor do componente primario (this)
+		int iAtual = this.posicao[0];
+		int jAtual = this.posicao[1];
+		
+		if ((iAtual-1) >= 0) {
+			
+		}
+		if ((iAtual+1) < 4) {
+			
+		}
+		if ((jAtual-1) >= 0) {
+			
+		}
+		if ((jAtual+1) < 4) {
+			
+		}
+		
 		
 	}
 	
+	
+	public void iniciarLuta() {
+		;
+	}
+	
+	public void pegarOuro() {
+		;
+	}
 	
 	public char representacao() {
 		return '0';
