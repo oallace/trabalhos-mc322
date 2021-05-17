@@ -38,9 +38,8 @@ public class Sala {
 			this.componentePrimario = componente;
 			return true;
 		}
-		else {
-			return false;
-		}
+		
+		return false;
 	}
 	
 	
@@ -50,13 +49,12 @@ public class Sala {
 	
 	
 	public boolean setComponenteSecundario(Componente componente){
-		if (this.componenteSecundario == null) {
+		if (this.componenteSecundario == null || this.componenteSecundario instanceof Brisa) {
 			this.componenteSecundario = componente;
 			return true;
 		}
-		else {
-			return false;
-		}
+		
+		return false;
 	}
 	
 	
