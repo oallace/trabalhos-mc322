@@ -15,12 +15,15 @@ public class Caverna
         	}
         }
         
-        setComponente(0, 0, new Heroi());
+        setComponente(0, 0, new Heroi()); // setar a posicao na variavel heroi
     }
     
     
     public boolean setComponente(int iComponente, int jComponente, Componente componente) {
     	if (this.salas[iComponente][jComponente].setComponentePrimario(componente)) {
+    		if (componente instanceof Buraco || componente instanceof Wumpus) {
+    			componente.setComponentesSecundarios();
+    		}
     		return true;
     	}
     	return false;
