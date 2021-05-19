@@ -40,7 +40,6 @@ public class Sala {
 		}
 	}
 	
-	
 	// Retorna um caractere que representa a Sala.
 	public char representacao() {
 		if (visitada) {

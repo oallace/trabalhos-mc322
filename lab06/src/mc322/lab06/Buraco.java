@@ -7,13 +7,6 @@ public class Buraco extends Componente {
 		prioridade = 0;
 	}
 
-
-	public void removerComponente()
-	{
-		super.removerComponente();
-		// remover brisas
-	}
-
 	public char representacao()
 	{
 		return 'B';

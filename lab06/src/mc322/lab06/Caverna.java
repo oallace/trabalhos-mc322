@@ -11,45 +11,22 @@ public class Caverna
         
         for (int i = 0; i < 4; i++) {
         	for (int j = 0; j < 4; j++) {
-        		salas[i][j] = new Sala(this, i, j, null, null);
+        		salas[i][j] = new Sala(i, j);
         	}
         }
-        
-        setComponente(0, 0, new Heroi()); // setar a posicao na variavel heroi
     }
     
+    public static boolean ehEspacoValido(int i, int j)
+	{
+		return true;
+	}
     
-    public boolean setComponente(int iComponente, int jComponente, Componente componente) {
-    	if (this.salas[iComponente][jComponente].setComponentePrimario(componente)) {
-    		if (componente instanceof Buraco || componente instanceof Wumpus) {
-    			componente.setComponentesSecundarios();
-    		}
-    		return true;
-    	}
-    	return false;
+	public boolean setComponente(int iComponente, int jComponente, Componente componente) {
+    	return this.salas[iComponente][jComponente].setComponente(componente);
     }
-    
-    
-    public Sala getSala(int iSala, int jSala) {
-    	return this.salas[iSala][jSala];
-    }
-    
     
     // Falta analisar o caso em que ele tenta sair da caverna sem o Ouro.
     public int analisarFimDeMovimento(int iComponente, int jComponente, Componente Heroi) {
-    	if (this.salas[iComponente][jComponente].getComponentePrimario() instanceof Buraco) {
-    		return 0;
-    	}
-    	
-    	else if (this.salas[iComponente][jComponente].getComponentePrimario() instanceof Wumpus) {
-    		return Heroi.iniciarLuta();
-    	}
-    	
-    	else if (this.salas[iComponente][jComponente].getComponentePrimario() instanceof Ouro) {
-    		Heroi.pegarOuro();
-    		return 1;
-    	}
-    	
     	return 1;
     }
 
