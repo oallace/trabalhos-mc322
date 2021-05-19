@@ -10,6 +10,7 @@ public abstract class Componente
 		this.caverna = caverna;
 		this.posicao[0] = iComponente;
 		this.posicao[1] = jComponente;
+		this.prioridade = -1;
 	}
 	
 	public int[] getPosicao() {
@@ -25,10 +26,18 @@ public abstract class Componente
 	{
 		return this.prioridade;
 	}
+
+	// Acomoda o componente na sua sala correspondente
+	public boolean acomodarCompontente()
+	{
+		return caverna.setComponente(posicao[0], posicao[1], this);
+	}
 		
-	public abstract void removerComponente();
+	public void removerComponente()
+	{
+		caverna.removerComponente(posicao[0], posicao[1], this);
+	}
 	
 	public abstract char representacao();
 
-	public abstract void apresentar();
 }
