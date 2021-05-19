@@ -10,7 +10,8 @@ public class Heroi extends Componente
      * informações. 
      * Além disso, o herói é quem recebe os comandos no teclado e realiza
      * as movimentações do jogo*/
-    private boolean flecha;
-    private Caverna caverna;
+    Heroi(Caverna caverna, int iComponente, int jComponente, String Name){
+    	super(caverna, iComponente, jComponente, Name);
+    }
 
 }
