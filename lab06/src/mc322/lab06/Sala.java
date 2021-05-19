@@ -23,7 +23,7 @@ public class Sala {
 		return this.posicao;
 	}
 	
-	public void setVisivel() {
+	public void tornarVisivel() {
 		this.visivel = '#';
 	}
 	
@@ -36,6 +36,7 @@ public class Sala {
 	public boolean setComponentePrimario(Componente componente){
 		if (this.componentePrimario == null) {
 			this.componentePrimario = componente;
+			componente.setSala(this);
 			return true;
 		}
 		
@@ -49,8 +50,9 @@ public class Sala {
 	
 	
 	public boolean setComponenteSecundario(Componente componente){
-		if (this.componenteSecundario == null || this.componenteSecundario instanceof Brisa) {
+		if (this.componenteSecundario == null || (this.componenteSecundario instanceof Brisa && componente instanceof Fedor)) {
 			this.componenteSecundario = componente;
+			componente.setSala(this);
 			return true;
 		}
 		
