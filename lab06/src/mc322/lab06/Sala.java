@@ -1,19 +1,17 @@
 package mc322.lab06;
 
 public class Sala {
-	private char visivel;   // '#' Uma sala é visível (Já foi percorrida pelo herói) ; '-' A sala ainda não é visível.
-	private int posicao[] = new int[2];
+	private boolean visitada;
+	private int posicao[] = new int[2]; // a sala precisa ter conhecimento de sua posição?
+	// pensar melhor essa listagem de componentes
 	private Componente componentePrimario;
 	private Componente componenteSecundario;
-	private Caverna caverna;
+
 	
-	
-	
-	Sala(Caverna caverna, int iSala, int jSala, Componente componentePrimario, Componente componenteSecundario) {
-		this.caverna = caverna;
-		this.visivel = '-';
-		this.componentePrimario = componentePrimario;
-		this.componenteSecundario = componenteSecundario;
+	Sala(int iSala, int jSala) {
+		this.visitada = false;
+		this.componentePrimario = null;
+		this.componenteSecundario = null;
 		this.posicao[0] = iSala;
 		this.posicao[1] = jSala;
 	}
@@ -23,8 +21,8 @@ public class Sala {
 		return this.posicao;
 	}
 	
-	public void tornarVisivel() {
-		this.visivel = '#';
+	public void visitar() {
+		this.visitada = true;
 	}
 	
 	
@@ -50,6 +48,7 @@ public class Sala {
 	
 	
 	public boolean setComponenteSecundario(Componente componente){
+		// deve admitir mais de um componente secundario: caso em que o wunmpus é morto e temos que por brisa
 		if (this.componenteSecundario == null || (this.componenteSecundario instanceof Brisa && componente instanceof Fedor)) {
 			this.componenteSecundario = componente;
 			componente.setSala(this);
@@ -60,8 +59,9 @@ public class Sala {
 	}
 	
 	
+	// Retorna um caractere que representa a Sala.
 	public char representacao() {
-		if (this.visivel == '#') {
+		if (visitada) {
 			if (this.componentePrimario != null) {
 				return this.componentePrimario.representacao();
 			}
