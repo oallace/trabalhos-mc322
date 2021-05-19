@@ -2,20 +2,19 @@ package mc322.lab06;
 
 public class Sala {
 	private boolean visitada;
-	private int posicao[] = new int[2]; // a sala precisa ter conhecimento de sua posição?
-	// pensar melhor essa listagem de componentes
-	private Componente componentePrimario;
-	private Componente componenteSecundario;
+	private int posicao[] = new int[2]; // é preciso?
+	private Componente componentes []; //lista de componente onde o índice representa a prioridade do componente
+	private static int numeroPrioridades = 4;
 
 	
 	Sala(int iSala, int jSala) {
 		this.visitada = false;
-		this.componentePrimario = null;
-		this.componenteSecundario = null;
+		this.componentes = new Componente[numeroPrioridades];
+		for (int i = 0; i < numeroPrioridades; i++)
+			this.componentes = null;
 		this.posicao[0] = iSala;
 		this.posicao[1] = jSala;
 	}
-	
 	
 	public int[] getPosicao() {
 		return this.posicao;
@@ -25,55 +24,31 @@ public class Sala {
 		this.visitada = true;
 	}
 	
-	
-	public Componente getComponentePrimario(){
-		return this.componentePrimario;
-	}
-	
-	
-	public boolean setComponentePrimario(Componente componente){
-		if (this.componentePrimario == null) {
-			this.componentePrimario = componente;
-			componente.setSala(this);
+	// Seta e retorna true quando a atribuição de um componente à sala for válida.
+	public boolean setComponente(Componente c)
+	{
+		int i = c.getPrioridade();
+
+		if(componentes[i] == null)
+		{
+			componentes[i] = c;
 			return true;
 		}
-		
-		return false;
-	}
-	
-	
-	public Componente getComponenteSecundario(){
-		return this.componenteSecundario;
-	}
-	
-	
-	public boolean setComponenteSecundario(Componente componente){
-		// deve admitir mais de um componente secundario: caso em que o wunmpus é morto e temos que por brisa
-		if (this.componenteSecundario == null || (this.componenteSecundario instanceof Brisa && componente instanceof Fedor)) {
-			this.componenteSecundario = componente;
-			componente.setSala(this);
-			return true;
+		else
+		{
+			return false;
 		}
-		
-		return false;
 	}
 	
 	
 	// Retorna um caractere que representa a Sala.
 	public char representacao() {
 		if (visitada) {
-			if (this.componentePrimario != null) {
-				return this.componentePrimario.representacao();
-			}
-			else if (this.componenteSecundario != null) {
-				return this.componenteSecundario.representacao();
-			}
-			else {
-				return '#';
-			}
-			
+			for (int i = 0; i < numeroPrioridades; i++)
+				if (componentes[i] != null)
+					return componentes[i].representacao();
+			return '#';			
 		}
-		
 		return '-';
 	}
 }
