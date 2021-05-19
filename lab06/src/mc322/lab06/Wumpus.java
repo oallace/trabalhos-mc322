@@ -7,6 +7,20 @@ public class Wumpus extends Componente{
 		this.prioridade = 0;
 	}
 
+	public boolean acomodarCompontente()
+	{
+		Fedor f; 
+		f = new Fedor(caverna, posicao[0] - 1, posicao[1]);
+		f.acomodarCompontente();
+		f = new Fedor(caverna, posicao[0] + 1, posicao[1]);
+		f.acomodarCompontente();
+		f = new Fedor(caverna, posicao[0], posicao[1] - 1);
+		f.acomodarCompontente();
+		f = new Fedor(caverna, posicao[0], posicao[1] + 1);
+		f.acomodarCompontente();
+		return super.acomodarCompontente();
+	}
+
 	public char representacao()
 	{
 		return 'W';

@@ -18,25 +18,29 @@ public class Caverna
     
     public static boolean ehEspacoValido(int i, int j)
 	{
-		return true;
+		if ((i >= 0 && i < 4) && (j >= 0 && j < 4))
+            return true;
+        else
+            return false;
 	}
     
-	public boolean setComponente(int iComponente, int jComponente, Componente componente) {
-    	return this.salas[iComponente][jComponente].setComponente(componente);
+    // Requisita o componente de salas já visitadas:
+    public Componente getComponente(int i, int j, int prioridade)
+    {
+        return salas[i][j].getComponente(prioridade);
     }
-    
-    // Falta analisar o caso em que ele tenta sair da caverna sem o Ouro.
-    public int analisarFimDeMovimento(int iComponente, int jComponente, Componente Heroi) {
-    	return 1;
+	
+    public boolean setComponente(int iComponente, int jComponente, Componente componente) {
+    	if (ehEspacoValido(iComponente, jComponente))
+            return this.salas[iComponente][jComponente].setComponente(componente);
+        return false;
     }
 
-    
-    // recebe uma solicitação e executa a movimentação do herói se for possivel.
-    public void solicitaMovimento(char comando)
+    // É a melhor forma de implementar?
+    public Componente removerComponente(int i, int j, int prioridade)
     {
-        //
+        return salas[i][j].removerComponente(prioridade);
     }
-    
     
     public void imprimir() {
     	for (int i = 0; i < 4; i++) {
@@ -47,7 +51,7 @@ public class Caverna
     		System.out.println();
     	}
     	for (int i = 0; i < 4; i++) {
-    		System.out.print(" " + i+1);
+    		System.out.print("  " + (i+1));
     	}
     }
 }
