@@ -5,65 +5,76 @@ import java.util.Scanner;
 public class AppMundoWumpus {
     public static void main(String[] args) {
         Montador m = new Montador();
-        Caverna c;
+        Heroi heroi;
+        Controle controle;
+        char comando;
+        boolean executando; // informa se o jogo está executando.
+        String mensagem = "-";
         Scanner teclado = new Scanner(System.in);
 
-        m.setEntrada("lab06/data/caverna3.csv");
-        c = m.montarCaverna("Wall-e");
-        Heroi h = m.getHeroi();
-        Controle controle = new Controle(h);
+        if (args.length != 2) {
+            System.out.println("Você deve fornecer nome e arquivo de caverna!");
+            teclado.close();
+            return;
+        }
+        m.setEntrada(args[1]); // args[1]
+        heroi = m.montarCaverna(args[0]); // args[0]
+        controle = new Controle(heroi);
         controle.apresentar();
-        char comando;
-        boolean vivo = true;
-        while (vivo) {
-            String mensagem = "-";
+        executando = true;
+        if (heroi == null) // não é possível montar a caverna
+        {
+            executando = false;
+            System.out.println("Caverna inválida!");
+        }
+        while (executando) {
             comando = teclado.next().charAt(0);
-            switch (comando) {
-                case 'e':
-                    if (controle.equiparFlecha())
+            if (comando == 'w' || comando == 'a' || comando == 's' || comando == 'd') {
+                switch (controle.movimento(comando)) {
+                    case 's': // movimento executado
+                        executando = true;
                         mensagem = "-";
-                    else
-                        mensagem = "As flechas acabaram :O";
-                    break;
-                case 'c':
-                    if (controle.capturarOuro()) {
-                        mensagem = "Você Ganhou :D!!!";
-                    } else {
-                        mensagem = "Não há nenhum ouro aqui :(\nQuem sabe na próxima sala?";
-                    }
+                        break;
+                    case 'v':
+                        executando = true;
+                        mensagem = "Você derrotou o Wumpus!!! ><";
+                        break;
+                    case 'w':
+                        executando = false;
+                        mensagem = "Parece que o Wumpus te pegou :\\";
+                        break;
+                    case 'b':
+                        executando = false;
+                        mensagem = "Cuidado onde pisa!";
+                }
+            } else if (comando == 'k') {
+                if (controle.equiparFlecha())
+                    mensagem = "-";
+                else
+                    mensagem = "As flechas acabaram :O";
 
-                    break;
-                case 'q':
-                    if (controle.deixarCaverna()) {
-                        vivo = false;
-                        mensagem = "Volte Sempre!";
-                    } else {
-                        mensagem = "Você não pode deixar a caverna sem o Ouro!";
-                    }
-                    break;
-                default:
-                    switch (controle.movimento(comando)) {
-                        case 's': // movimento executado
-                            vivo = true;
-                            mensagem = "-";
-                            break;
-                        case 'v':
-                            vivo = true;
-                            mensagem = "Você derrotou o Wumpus!!! ><";
-                            break;
-                        case 'w':
-                            vivo = false;
-                            mensagem = "Parece que o Wumpus te pegou :\\";
-                            break;
-                        case 'b':
-                            vivo = false;
-                            mensagem = "Cuidado onde pisa!";
-                    }
-                    break;
+            } else if (comando == 'c') {
+                if (controle.capturarOuro()) {
+                    mensagem = "Você Ganhou :D!!!";
+                } else {
+                    mensagem = "Não há nenhum ouro aqui :(\nQuem sabe na próxima sala?";
+                }
+
+            } else if (comando == 'q') {
+                if (controle.deixarCaverna()) {
+                    executando = false;
+                    mensagem = "Volte Sempre!";
+                } else {
+                    mensagem = "Você não pode deixar a caverna sem o Ouro!";
+                }
+
+            } else {
+                mensagem = "Comando inválido!";
             }
             controle.apresentar();
             System.out.println(mensagem);
         }
+        teclado.close();
 
     }
 }

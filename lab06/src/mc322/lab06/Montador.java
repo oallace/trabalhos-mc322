@@ -3,7 +3,6 @@ package mc322.lab06;
 public class Montador {
     private CSVHandling csv;
     private String entrada;
-    Heroi heroi;
 
     Montador() {
         csv = new CSVHandling();
@@ -14,16 +13,22 @@ public class Montador {
         this.entrada = entrada;
     }
 
-    public Heroi getHeroi() {
-        return heroi;
+    // Valida a entrada setada.
+    public boolean entradaValida() {
+        return (entrada != null);
     }
 
-    public Caverna montarCaverna(String jogador) {
+    // Monta uma caverna com a entrada setada e a atribui a um heroi. Retorna um
+    // ponteiro para o heroi. Retorna null se a caverna não pode ser montada.
+    public Heroi montarCaverna(String jogador) {
         String comandos[][];
         Caverna caverna;
+        Heroi heroi = null;
         int buracos, wumpus, ouros, herois;
         int iSala, jSala;
 
+        if (!entradaValida())
+            return null;
         csv.setDataSource(entrada);
         comandos = csv.requestCommands();
         caverna = new Caverna();
@@ -71,6 +76,6 @@ public class Montador {
         }
         if (buracos < 2 || wumpus < 1 || herois < 1 || ouros < 1)
             return null;
-        return caverna;
+        return heroi;
     }
 }
