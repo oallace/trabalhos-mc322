@@ -1,16 +1,14 @@
 package mc322.lab06;
 
-
-public class Heroi extends Componente
-{
+public class Heroi extends Componente {
     private String nome;
     private int pontuacao;
     private int numeroFlechas;
     private boolean flechaEquipada;
     private Componente ouro;
 
-    Heroi(Caverna caverna, int iComponente, int jComponente, String nome){
-    	super(caverna, iComponente, jComponente);
+    Heroi(Caverna caverna, int iComponente, int jComponente, String nome) {
+        super(caverna, iComponente, jComponente);
         this.nome = nome;
         this.pontuacao = 0;
         this.numeroFlechas = 1;
@@ -18,10 +16,10 @@ public class Heroi extends Componente
         this.ouro = null;
         this.prioridade = 1;
     }
-    
-    // Realiza um movimento e retorna um ponteiro para o componente principal da sala de destino.
-    public Componente movimento(char mov)
-    {
+
+    // Realiza um movimento e retorna um ponteiro para o componente principal da
+    // sala de destino.
+    public Componente movimento(char mov) {
         int iDestino, jDestino;
 
         iDestino = this.posicao[0];
@@ -39,59 +37,59 @@ public class Heroi extends Componente
             case 'd':
                 jDestino++;
                 break;
-            }
+        }
         // checar se o destino é válido
-        if (Caverna.ehEspacoValido(iDestino, jDestino))
-        {
+        if (Caverna.ehEspacoValido(iDestino, jDestino)) {
             // tirar heroi da origem (coordenadas atuais)
             this.removerComponente();
             // mover para o destino
             caverna.setComponente(iDestino, jDestino, this);
             this.posicao[0] = iDestino;
             this.posicao[1] = jDestino;
-            return caverna.getComponente(iDestino, jDestino, 0); // Retorna o componente de prioridade 0 na sala para qual o heroi se movimentou
+            return caverna.getComponente(iDestino, jDestino, 0); // Retorna o componente de prioridade 0 na sala para
+                                                                 // qual o heroi se movimentou
         }
 
         return null;
     }
 
-    public void equiparFlecha()
-    {
-        if (numeroFlechas > 0)
-            {
-                flechaEquipada = true;
-                numeroFlechas--;
-                System.out.println("Flecha Equipada!");
-            }
+    public void marcarPontuacao(int soma) {
+        this.pontuacao += soma;
     }
 
-    public boolean dispararFlecha()
-    {
-        boolean res = flechaEquipada;    
-        flechaEquipada = false; 
+    public void equiparFlecha() {
+        if (numeroFlechas > 0) {
+            flechaEquipada = true;
+            numeroFlechas--;
+        }
+    }
+
+    public boolean dispararFlecha() {
+        boolean res = flechaEquipada;
+        flechaEquipada = false;
         return res;
     }
 
-    public void capturarOuro(Componente ouro)
-    {
+    public void capturarOuro(Componente ouro) {
         ouro.removerComponente();
         this.ouro = ouro;
     }
 
-    public Componente getOuro()
-    {
+    public Componente getOuro() {
         return ouro;
     }
 
-    public char representacao()
-    {
+    public char representacao() {
         return 'P';
     }
 
-    public void apresentar()
-    {
+    public void apresentar() {
         System.out.println("Player: " + nome);
         System.out.println("Score: " + pontuacao);
+        System.out.println("Flechas: " + numeroFlechas);
+        if (flechaEquipada)
+            System.out.println("]--->");
+
     }
 
 }
