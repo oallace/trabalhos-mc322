@@ -1,5 +1,7 @@
 package mc322.lab06;
 
+import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
+
 public class Caverna
 {
     private Sala salas[][];
@@ -39,7 +41,10 @@ public class Caverna
     // É a melhor forma de implementar?
     public Componente removerComponente(int i, int j, int prioridade)
     {
-        return salas[i][j].removerComponente(prioridade);
+        if (ehEspacoValido(i, j))
+            return salas[i][j].removerComponente(prioridade);
+        else
+            return null;
     }
     
     public void imprimir() {

@@ -6,13 +6,15 @@ public class Heroi extends Componente
     private String nome;
     private int pontuacao;
     private int numeroFlechas;
-    private Ouro ouro;
+    private boolean flechaEquipada;
+    private Componente ouro;
 
     Heroi(Caverna caverna, int iComponente, int jComponente, String nome){
     	super(caverna, iComponente, jComponente);
         this.nome = nome;
         this.pontuacao = 0;
         this.numeroFlechas = 1;
+        this.flechaEquipada = false;
         this.ouro = null;
         this.prioridade = 1;
     }
@@ -42,20 +44,54 @@ public class Heroi extends Componente
         if (Caverna.ehEspacoValido(iDestino, jDestino))
         {
             // tirar heroi da origem (coordenadas atuais)
-            caverna.removerComponente(this.posicao[0], this.posicao[1], this.prioridade);
+            this.removerComponente();
             // mover para o destino
             caverna.setComponente(iDestino, jDestino, this);
             this.posicao[0] = iDestino;
             this.posicao[1] = jDestino;
-            return caverna.getComponente(iDestino, jDestino, 0);
+            return caverna.getComponente(iDestino, jDestino, 0); // Retorna o componente de prioridade 0 na sala para qual o heroi se movimentou
         }
 
         return null;
     }
 
+    public void equiparFlecha()
+    {
+        if (numeroFlechas > 0)
+            {
+                flechaEquipada = true;
+                numeroFlechas--;
+                System.out.println("Flecha Equipada!");
+            }
+    }
+
+    public boolean dispararFlecha()
+    {
+        boolean res = flechaEquipada;    
+        flechaEquipada = false; 
+        return res;
+    }
+
+    public void capturarOuro(Componente ouro)
+    {
+        ouro.removerComponente();
+        this.ouro = ouro;
+    }
+
+    public Componente getOuro()
+    {
+        return ouro;
+    }
+
     public char representacao()
     {
         return 'P';
+    }
+
+    public void apresentar()
+    {
+        System.out.println("Player: " + nome);
+        System.out.println("Score: " + pontuacao);
     }
 
 }

@@ -29,6 +29,11 @@ public abstract class Componente {
 		return caverna.setComponente(posicao[0], posicao[1], this);
 	}
 
+	public void removerComponente()
+	{
+		caverna.removerComponente(this.posicao[0], this.posicao[1], this.prioridade);
+	}
+
 	public abstract char representacao();
 
 }

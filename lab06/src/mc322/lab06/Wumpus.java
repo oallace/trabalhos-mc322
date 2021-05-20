@@ -9,7 +9,7 @@ public class Wumpus extends Componente{
 
 	public boolean acomodarCompontente()
 	{
-		Fedor f; 
+		Fedor f;
 		f = new Fedor(caverna, posicao[0] - 1, posicao[1]);
 		f.acomodarCompontente();
 		f = new Fedor(caverna, posicao[0] + 1, posicao[1]);
@@ -19,6 +19,17 @@ public class Wumpus extends Componente{
 		f = new Fedor(caverna, posicao[0], posicao[1] + 1);
 		f.acomodarCompontente();
 		return super.acomodarCompontente();
+	}
+
+	public void removerComponente()
+	{
+		super.removerComponente();
+		// Remove os fedores do Wumpus:
+		caverna.removerComponente(this.posicao[0] - 1, this.posicao[1], 2);
+		caverna.removerComponente(this.posicao[0] + 1, this.posicao[1], 2);
+		caverna.removerComponente(this.posicao[0], this.posicao[1] - 1, 2);
+		caverna.removerComponente(this.posicao[0], this.posicao[1] + 1, 2);
+
 	}
 
 	public char representacao()

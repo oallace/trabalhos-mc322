@@ -14,14 +14,25 @@ public class AppMundoWumpus
         c.imprimir();
         System.out.println();
         Heroi h = m.getHeroi();
-        String comando;
-        while (true)
+        Controle controle = new Controle(h);
+        char comando;
+        boolean vivo = true;
+        while (vivo)
         {
-            comando = teclado.next();
+            comando = teclado.next().charAt(0);
             System.out.println(comando);
-            h.movimento(comando.charAt(0));
-            c.imprimir();
-            System.out.println();
+            switch (comando) {
+                case 'e':
+                    controle.equiparFlecha();
+                    break;
+                case 'c':
+                    controle.capturarOuro();
+                    break;
+                default:
+                    vivo = controle.movimento(comando);
+                    break;
+            }
+            controle.apresentar();
         }
         
         
