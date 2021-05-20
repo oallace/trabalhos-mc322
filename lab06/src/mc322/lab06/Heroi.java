@@ -46,6 +46,7 @@ public class Heroi extends Componente {
             caverna.setComponente(iDestino, jDestino, this);
             this.posicao[0] = iDestino;
             this.posicao[1] = jDestino;
+            marcarPontuacao(-15);
             return caverna.getComponente(iDestino, jDestino, 0); // Retorna o componente de prioridade 0 na sala para
                                                                  // qual o heroi se movimentou
         }
@@ -57,11 +58,14 @@ public class Heroi extends Componente {
         this.pontuacao += soma;
     }
 
-    public void equiparFlecha() {
+    public boolean equiparFlecha() {
         if (numeroFlechas > 0) {
             flechaEquipada = true;
             numeroFlechas--;
+            marcarPontuacao(-100);
+            return true;
         }
+        return false;
     }
 
     public boolean dispararFlecha() {
