@@ -1,0 +1,17 @@
+package mc322.lab07;
+
+public class TurnBeginState extends State{
+	
+	public void enter() {
+		System.out.println("TurnBeginState:");
+		
+		if (StateMachineController.instance.getCurrentPlayer() == StateMachineController.instance.getPlayer1())
+			StateMachineController.instance.setCurrentPlayer(StateMachineController.instance.getPlayer2());
+		else
+			StateMachineController.instance.setCurrentPlayer(StateMachineController.instance.getPlayer1());
+		
+		
+		System.out.println(StateMachineController.instance.getCurrentPlayer().getTeam() + " is playing now");
+		StateMachineController.instance.changeTo(new PieceSelectionState());
+	}
+}
