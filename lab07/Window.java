@@ -26,7 +26,10 @@ public class Window extends JFrame{
 		this.contentPane = getContentPane();
 		this.contentPane.setLayout(null);
 		this.contentPane.setBackground(Color.darkGray);
+		
 		this.contentPane.add(new BoardPanel());
+		this.contentPane.add(new NameText(StateMachineController.instance.getPlayer1().name, 20, 10));
+		this.contentPane.add(new NameText(StateMachineController.instance.getPlayer2().name, 20, 730));
 		
 		setVisible(true);
 	}
