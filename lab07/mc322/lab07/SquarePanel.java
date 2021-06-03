@@ -36,4 +36,10 @@ public class SquarePanel extends JPanel{
 	public void removeImage() {
 		;
 	}
+
+	// Classe que será chamada ao clicar no JPanel.
+	private class SquarePanelHandler
+	{
+
+	}
 }

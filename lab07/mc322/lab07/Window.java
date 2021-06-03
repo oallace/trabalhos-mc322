@@ -29,8 +29,8 @@ public class Window extends JFrame{
 		this.contentPane.setBackground(Color.darkGray);
 		
 		this.contentPane.add(new BoardPanel());
-		this.contentPane.add(new NameText(StateMachineController.instance.getPlayer1().name, 75, 10, 300, 20, 17));
-		this.contentPane.add(new NameText(StateMachineController.instance.getPlayer2().name, 75, 728, 300, 20, 17));
+		this.contentPane.add(new NameText(StateMachineController.instance.getPlayer1().getName(), 75, 10, 300, 20, 17));
+		this.contentPane.add(new NameText(StateMachineController.instance.getPlayer2().getName(), 75, 728, 300, 20, 17));
 		this.contentPane.add(new ImagePanel("../../../images/user.png", 20, 9));
 		this.contentPane.add(new ImagePanel("../../../images/user.png", 20, 727));
 		
