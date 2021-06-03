@@ -14,23 +14,34 @@ public class BoardPanel extends JPanel{
 		setSize(650, 650);
 		setLocation(20, 65);
 		setLayout(new GridLayout(8, 8));
-		setBackground(Color.LIGHT_GRAY);
+		setBackground(Color.DARK_GRAY);
 		int aux = 0;
 		
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
+				SquarePanel squarePanel = new SquarePanel();
+				squarePanel.setLayout(null);
 				if (aux == 0) {
-					SquarePanel squarePanel = new SquarePanel();
 					squarePanel.setBackground(new Color(244, 241, 214)); //244, 241, 214
-					this.add(squarePanel);
-					aux = 1;
 				}
 				else {
-					SquarePanel squarePanel = new SquarePanel();
 					squarePanel.setBackground(new Color(128, 165, 91));  //128, 165, 91
-					this.add(squarePanel);
-					aux = 0;
 				}
+				
+				if (i == 7) {
+					if (aux == 0)
+						squarePanel.add(new NumberSquare(Character.toString((char)('a' + j)), 65, 60, 15, 18, 19, 244, 241, 214, 128, 165, 91));
+					else
+						squarePanel.add(new NumberSquare(Character.toString((char)((int)'a' + j)), 65, 60, 15, 19, 18, 128, 165, 91, 244, 241, 214));
+				}
+				if (j == 0) {
+					if (aux == 0)
+						squarePanel.add(new NumberSquare(Integer.toString(8 - i), 4, 4, 18, 18, 19, 244, 241, 214, 128, 165, 91));
+					else
+						squarePanel.add(new NumberSquare(Integer.toString(8 - i), 4, 4, 18, 18, 19, 128, 165, 91, 244, 241, 214));
+				}
+				this.add(squarePanel);
+				aux = (aux == 1) ? 0:1;
 			}
 			
 			aux = (aux == 1) ? 0:1;
