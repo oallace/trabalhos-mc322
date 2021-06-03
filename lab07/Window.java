@@ -1,22 +1,23 @@
 package mc322.lab07;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 
 public class Window extends JFrame{
 	
 	private static final long serialVersionUID = 7446721714968740806L;
+	public static Window instance;
 	private Container contentPane;
+	private SquarePanel board[][];
 	
 	
 	Window(){
 		super();
+		instance = this;
+		board = new SquarePanel[8][8];
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(710, 820);
@@ -38,14 +39,12 @@ public class Window extends JFrame{
 	}
 	
 	
-	public void addImage(String imagePath) {
-		ImageIcon image = new ImageIcon(imagePath);
-		JLabel imageField = new JLabel(image);
-		this.contentPane.add(imageField, BorderLayout.CENTER);
-		SwingUtilities.updateComponentTreeUI(this);
+	public SquarePanel getSquarePanel(int iPos, int jPos) {
+		return this.board[iPos][jPos];
 	}
 	
-	public void removeImage() {
-		;
+	public void setSquarePanel(SquarePanel squarePanel, int iPos, int jPos) {
+		this.board[iPos][jPos] = squarePanel;
 	}
+	
 }
