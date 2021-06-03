@@ -9,6 +9,6 @@ public class Pawn extends Piece{
 	public Pawn(Player player, Square square){
 		super(player, square);
 		this.movement = new PawnMovement();
-		this.image = "caminhoImagem";
+		name = player.getTeam()+"Pawn";
 	}
 }

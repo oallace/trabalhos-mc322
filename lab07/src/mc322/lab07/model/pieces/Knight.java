@@ -9,6 +9,6 @@ public class Knight extends Piece{
 	public Knight(Player player, Square square){
 		super(player, square);
 		this.movement = new KnightMovement();
-		this.image = "caminhoImagem";
+		name = player.getTeam()+"Knight";
 	}
 }

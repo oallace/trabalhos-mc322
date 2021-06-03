@@ -9,6 +9,6 @@ public class Queen extends Piece{
 	public Queen(Player player, Square square){
 		super(player, square);
 		this.movement = new QueenMovement();
-		this.image = "Ri";
+		name = player.getTeam()+"Queen";
 	}
 }

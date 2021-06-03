@@ -17,8 +17,7 @@ public class AppChess {
 		if (board.getSquare(7, 3) == board.getSquare(7, 3).getPiece().getSquare()) {
 			System.out.println("\noi");
 		}
-		System.out.println(board.getSquare(7, 3).getPiece().getImage());
 		
-		Window window = new Window();
+		Window window = new Window(board);
 	}
 }

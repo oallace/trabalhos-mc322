@@ -9,6 +9,6 @@ public class Bishop extends Piece{
 	public Bishop(Player player, Square square){
 		super(player, square);
 		this.movement = new BishopMovement();
-		this.image = "caminhoImagem";
+		name = player.getTeam() + "Bishop";
 	}
 }

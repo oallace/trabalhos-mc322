@@ -9,6 +9,7 @@ public class Rook extends Piece{
 	public Rook(Player player, Square square){
 		super(player, square);
 		this.movement = new RookMovement();
-		this.image = "caminhoImagem";
+		// falta decidir com base no jogador:
+		name = player.getTeam()+"Rook";
 	}
 }

@@ -9,10 +9,9 @@ public class ImageLabel extends JLabel{
 	
 	public ImageLabel(String imagePath, int iPos, int jPos){
 		super();
-				
-		ImageIcon image = new ImageIcon(getClass().getResource(imagePath));
 		setSize(45, 45);
 		setLocation(iPos, jPos);
+		ImageIcon image = new ImageIcon(getClass().getResource(imagePath));
 		this.setIcon(image);
 	}
 }

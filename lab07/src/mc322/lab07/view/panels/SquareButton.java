@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
+import mc322.lab07.view.Window;
+
 public class SquareButton extends JButton{
 
 	private static final long serialVersionUID = 4934802567644563818L;
@@ -22,9 +24,17 @@ public class SquareButton extends JButton{
 		return this.position;
 	}
 	
+	public void atualizeRepresentation()
+	{
+		// representação da peça:
+		String pieceName = Window.instance.getPieceName(position[0]-1, position[1]-1);
+		if (pieceName != null)
+			addImage("../images/" +pieceName + ".png");
+	}
 	
 	public void addImage(String imagePath) {
-		this.add(new ImageLabel(imagePath, 0, 0));
+		if (imagePath != null)
+			this.add(new ImageLabel(imagePath, 0, 0));
 	}
 	
 	

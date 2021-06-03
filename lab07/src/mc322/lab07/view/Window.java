@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Container;
 import javax.swing.JFrame;
 
+import mc322.lab07.model.Board;
+import mc322.lab07.model.pieces.Piece;
 import mc322.lab07.view.panels.BoardPanel;
 import mc322.lab07.view.panels.ImageLabel;
 import mc322.lab07.view.panels.SquareButton;
@@ -16,13 +18,15 @@ public class Window extends JFrame{
 	public static Window instance;
 	private Container contentPane;
 	private SquareButton board[][];
+	// Comunicação com o jogo:
+	private Board boardPointer;
 	
 	
-	public Window(){
+	public Window(Board boarPointer){
 		super();
 		instance = this;
 		board = new SquareButton[8][8];
-		
+		this.boardPointer = boarPointer;		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(710, 820);
 		setLocationRelativeTo(null);
@@ -49,6 +53,11 @@ public class Window extends JFrame{
 	
 	public void setSquareButton(SquareButton squarePanel, int iPos, int jPos) {
 		this.board[iPos][jPos] = squarePanel;
+	}
+
+	public String getPieceName(int iPos, int jPos)
+	{
+		return boardPointer.getPieceName(iPos, jPos);
 	}
 	
 }

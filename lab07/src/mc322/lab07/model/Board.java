@@ -42,6 +42,13 @@ public class Board {
 	public void setPiece(int i, int j, Piece piece) {
 		this.board[i][j].setPiece(piece);
 	}
+
+	public String getPieceName(int i, int j)
+	{
+		if (board[i][j].getPiece() != null)
+			return board[i][j].getPiece().getName();
+		return null;
+	}
 	
 	
 	public Piece getSelectedPiece() {
