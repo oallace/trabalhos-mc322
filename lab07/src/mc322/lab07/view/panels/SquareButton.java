@@ -3,6 +3,7 @@ package mc322.lab07.view.panels;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.text.Position;
 
 import mc322.lab07.view.Window;
 
@@ -43,12 +44,12 @@ public class SquareButton extends JButton{
 	}
 
 	// Classe que será chamada ao clicar no JPanel.
-	private static class SquareButtonlHandler implements ActionListener
+	private class SquareButtonlHandler implements ActionListener
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// Função disparada quando clicamos sobre um SquareButton:
-			System.out.println("Clicou!");
+			System.out.println("" + position[0] + position[1]);
 		}
 	}
 }
