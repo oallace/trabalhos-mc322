@@ -30,15 +30,15 @@ public class BoardPanel extends JPanel{
 				
 				if (i == 7) {
 					if (aux == 0)
-						squarePanel.add(new NumberSquare(Character.toString((char)('a' + j)), 65, 60, 15, 18, 19, 244, 241, 214, 128, 165, 91));
+						squarePanel.add(new TextLabel(Character.toString((char)('a' + j)), 65, 60, 15, 18, 19, 128, 165, 91));
 					else
-						squarePanel.add(new NumberSquare(Character.toString((char)((int)'a' + j)), 65, 60, 15, 19, 18, 128, 165, 91, 244, 241, 214));
+						squarePanel.add(new TextLabel(Character.toString((char)((int)'a' + j)), 65, 60, 15, 19, 18, 244, 241, 214));
 				}
 				if (j == 0) {
 					if (aux == 0)
-						squarePanel.add(new NumberSquare(Integer.toString(8 - i), 4, 4, 18, 18, 19, 244, 241, 214, 128, 165, 91));
+						squarePanel.add(new TextLabel(Integer.toString(8 - i), 4, 4, 18, 18, 19, 128, 165, 91));
 					else
-						squarePanel.add(new NumberSquare(Integer.toString(8 - i), 4, 4, 18, 18, 19, 128, 165, 91, 244, 241, 214));
+						squarePanel.add(new TextLabel(Integer.toString(8 - i), 4, 4, 18, 18, 19, 244, 241, 214));
 				}
 				
 				this.add(squarePanel);
