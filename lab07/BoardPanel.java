@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 public class BoardPanel extends JPanel{
 	
 	private static final long serialVersionUID = 5792445905048410976L;
-
+	
 	BoardPanel(){
 		super();
 		
@@ -19,7 +19,7 @@ public class BoardPanel extends JPanel{
 		
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				SquarePanel squarePanel = new SquarePanel();
+				SquarePanel squarePanel = new SquarePanel(8-i, 8-j);
 				squarePanel.setLayout(null);
 				if (aux == 0) {
 					squarePanel.setBackground(new Color(244, 241, 214)); //244, 241, 214
@@ -40,7 +40,9 @@ public class BoardPanel extends JPanel{
 					else
 						squarePanel.add(new NumberSquare(Integer.toString(8 - i), 4, 4, 18, 18, 19, 128, 165, 91, 244, 241, 214));
 				}
+				
 				this.add(squarePanel);
+				Window.instance.setSquarePanel(squarePanel, 7-i, 7-j);
 				aux = (aux == 1) ? 0:1;
 			}
 			
