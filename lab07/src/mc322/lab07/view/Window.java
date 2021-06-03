@@ -33,7 +33,7 @@ public class Window extends JFrame{
 		this.contentPane.setBackground(Color.darkGray);
 		
 		this.contentPane.add(new BoardPanel());
-		this.contentPane.add(new TextLabel("Player1", 75, 10, 300, 20, 17, 255, 255, 255));
+		this.contentPane.add(new TextLabel("Player1", 75, 10, 300, 20, 17, 255, 255, 255)); // solicitar nome para Player
 		this.contentPane.add(new TextLabel("Player2", 75, 728, 300, 20, 17, 255, 255, 255));
 		this.contentPane.add(new ImageLabel("../images/user.png", 0, 0)); // editar tamanho da imagem.
 		this.contentPane.add(new ImageLabel("../images/user.png", 20, 727));

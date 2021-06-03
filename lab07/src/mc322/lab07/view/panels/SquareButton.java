@@ -1,14 +1,8 @@
 package mc322.lab07.view.panels;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 public class SquareButton extends JButton{
 
@@ -41,11 +35,10 @@ public class SquareButton extends JButton{
 	// Classe que será chamada ao clicar no JPanel.
 	private static class SquareButtonlHandler implements ActionListener
 	{
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			// Função disparada quando clicamos sobre um SquareButton:
 			System.out.println("Clicou!");
 		}
-		
 	}
 }

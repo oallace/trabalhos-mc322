@@ -1,5 +1,9 @@
 package mc322.lab07;
 
+import mc322.lab07.controller.StateMachineController;
+import mc322.lab07.model.Board;
+import mc322.lab07.view.Window;
+
 public class AppChess {
 	
 	public static void main(String args[]) {
