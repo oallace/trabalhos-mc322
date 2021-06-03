@@ -5,7 +5,7 @@ public class Square {
 	
 	private Piece piece;
 	
-	// Haver· mais informaÁ„o, como se este square est· congelado.
+	// Haver√° mais informa√ß√£o, como se este square est√° congelado.
 	
 	Square(int iPos, int jPos){
 		position = new int[2];
