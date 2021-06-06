@@ -13,6 +13,7 @@ public class Square {
 		position = new int[2];
 		position[0] = iPos;
 		position[1] = jPos;
+		piece = null;
 	}
 	
 	

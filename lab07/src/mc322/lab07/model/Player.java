@@ -7,10 +7,10 @@ public class Player {
 	private int score;
 	
 	
-	public Player(char team, int score){
+	public Player(char team, int score, String name){
 		this.team = team;
 		this.score = score;
-		this.name = "default"; // precisa receber o nome conforme o jogador
+		this.name = name; // precisa receber o nome conforme o jogador
 	}
 	
 	public char getTeam() {

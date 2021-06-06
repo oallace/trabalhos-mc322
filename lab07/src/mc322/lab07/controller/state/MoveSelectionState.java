@@ -2,6 +2,7 @@ package mc322.lab07.controller.state;
 
 import java.util.ArrayList;
 
+import mc322.lab07.controller.StateMachineController;
 import mc322.lab07.model.squares.Highlights;
 
 public class MoveSelectionState extends State{
@@ -12,6 +13,7 @@ public class MoveSelectionState extends State{
 		System.out.println("MoveSelectionState:");
 		//ArrayList<Square> moves = Board.instance.getSelectedPiece().movement.;
 		
+		StateMachineController.instance.changeTo(new TurnBeginState());
 	}
 	
 	public void exit() {

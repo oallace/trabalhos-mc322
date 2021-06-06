@@ -32,8 +32,7 @@ public class LoadState extends State{
 		Board.instance.getSquare(7, 6).setPiece(new Knight(StateMachineController.instance.getPlayer1(), Board.instance.getSquare(7, 6)));
 		Board.instance.getSquare(7, 7).setPiece(new Rook(StateMachineController.instance.getPlayer1(), Board.instance.getSquare(7, 7)));
 		
-		StateMachineController.instance.setCurrentPlayer(StateMachineController.instance.getPlayer1());
+		StateMachineController.instance.setCurrentPlayer(StateMachineController.instance.getPlayer2());
 		
-		StateMachineController.instance.changeTo(new TurnBeginState());
 	}
 }

@@ -21,7 +21,7 @@ public class BoardPanel extends JPanel{
 		
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				SquareButton squareButton = new SquareButton(8-i, j+1);
+				SquareButton squareButton = new SquareButton(i+1, j+1);
 				squareButton.setLayout(null);
 				if (aux == 0) {
 					squareButton.setBackground(new Color(244, 241, 214)); //244, 241, 214
@@ -45,7 +45,7 @@ public class BoardPanel extends JPanel{
 
 				squareButton.atualizeRepresentation();
 				this.add(squareButton);
-				Window.instance.setSquareButton(squareButton, 7-i, j);
+				Window.instance.setSquareButton(squareButton, i, j);
 				aux = (aux == 1) ? 0:1;
 			}
 			

@@ -2,6 +2,7 @@ package mc322.lab07.controller;
 
 import mc322.lab07.controller.state.LoadState;
 import mc322.lab07.controller.state.State;
+import mc322.lab07.controller.state.TurnBeginState;
 import mc322.lab07.model.Player;
 
 public class StateMachineController {
@@ -19,10 +20,10 @@ public class StateMachineController {
 	private boolean wasSquareSelected;
 	
 	
-	public StateMachineController(){
+	public StateMachineController(String namePlayer1, String namePlayer2){
 		instance = this;
-		player1 = new Player('W', 0);
-		player2 = new Player('B', 0);
+		player1 = new Player('W', 0, namePlayer1);
+		player2 = new Player('B', 0, namePlayer2);
 		currentState = null;
 		this.wasSquareSelected = false;
 	}
@@ -42,6 +43,10 @@ public class StateMachineController {
 	
 	public void setCurrentPlayer(Player player) {
 		this.currentPlayer = player;
+	}
+
+	public State getCurrentState(){
+		return this.currentState;
 	}
 	
 	public boolean getWasSquareSelected() {
@@ -68,6 +73,6 @@ public class StateMachineController {
 	
 	
 	public void startGame() {
-		changeTo(new LoadState());
+		changeTo(new TurnBeginState());
 	}
 }

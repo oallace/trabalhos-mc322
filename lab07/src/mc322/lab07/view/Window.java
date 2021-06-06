@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Container;
 import javax.swing.JFrame;
 
+import mc322.lab07.controller.StateMachineController;
 import mc322.lab07.model.Board;
 import mc322.lab07.model.pieces.Piece;
 import mc322.lab07.view.panels.BoardPanel;
@@ -18,15 +19,13 @@ public class Window extends JFrame{
 	public static Window instance;
 	private Container contentPane;
 	private SquareButton board[][];
-	// Comunicação com o jogo:
-	private Board boardPointer;
 	
 	
-	public Window(Board boarPointer){
+	public Window(){
 		super();
 		instance = this;
 		board = new SquareButton[8][8];
-		this.boardPointer = boarPointer;		
+			
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(710, 820);
 		setLocationRelativeTo(null);
@@ -37,10 +36,10 @@ public class Window extends JFrame{
 		this.contentPane.setBackground(Color.darkGray);
 		
 		this.contentPane.add(new BoardPanel());
-		this.contentPane.add(new TextLabel("Player1", 75, 10, 300, 20, 17, 255, 255, 255)); // solicitar nome para Player
-		this.contentPane.add(new TextLabel("Player2", 75, 728, 300, 20, 17, 255, 255, 255));
-		this.contentPane.add(new ImageLabel("../images/user.png", 0, 0)); // editar tamanho da imagem.
-		this.contentPane.add(new ImageLabel("../images/user.png", 20, 727));
+		this.contentPane.add(new TextLabel(StateMachineController.instance.getPlayer1().getName(), 75, 10, 300, 20, 17, 255, 255, 255)); // solicitar nome para Player
+		this.contentPane.add(new TextLabel(StateMachineController.instance.getPlayer2().getName(), 75, 728, 300, 20, 17, 255, 255, 255));
+		this.contentPane.add(new ImageLabel("../images/user.png", 20, 9, 45, 45)); // editar tamanho da imagem.
+		this.contentPane.add(new ImageLabel("../images/user.png", 20, 727, 45, 45));
 		
 		
 		setVisible(true);
@@ -57,7 +56,7 @@ public class Window extends JFrame{
 
 	public String getPieceName(int iPos, int jPos)
 	{
-		return boardPointer.getPieceName(iPos, jPos);
+		return Board.instance.getPieceName(iPos, jPos);
 	}
 	
 }
