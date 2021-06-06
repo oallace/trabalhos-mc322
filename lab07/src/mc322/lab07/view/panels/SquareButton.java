@@ -53,8 +53,11 @@ public class SquareButton extends JButton{
 	}
 	
 	public void addImage(String imagePath) {
-		if (imagePath != null)
-			this.add(new ImageLabel(imagePath, 10, 15, 55, 55));
+		if (imagePath != null) {
+			ImageLabel newImage = new ImageLabel(imagePath, 10, 15, 55, 55);
+			this.add(newImage);
+			components[0] = newImage; // 0 se refere à imagem da peça.
+		}
 	}
 
 	// Classe que será chamada ao clicar no JPanel.
