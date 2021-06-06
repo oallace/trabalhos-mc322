@@ -11,7 +11,7 @@ public class MoveSelectionState extends State{
 	
 	public void enter() {
 		System.out.println("MoveSelectionState:");
-		//ArrayList<Square> moves = Board.instance.getSelectedPiece().movement.;
+		// ArrayList<Square> moves = Board.instance.getSelectedPiece().movement.;
 		
 		StateMachineController.instance.changeTo(new TurnBeginState());
 	}
