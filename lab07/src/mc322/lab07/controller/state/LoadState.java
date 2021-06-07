@@ -6,7 +6,7 @@ import mc322.lab07.model.pieces.*;
 
 public class LoadState extends State{
 	
-	public void enter() {
+	public void enter() {                        // FALTA ADICIONAR AS PEÇAS NOS ARRAYS LIST CARALHO ----- nao ESQUECER S2
 		System.out.println("LoadState:");
 		
 		for (int j = 0; j < 8; j++) {

@@ -37,6 +37,7 @@ public class SquareButton extends JButton{
 		return this.position;
 	}
 	
+	// FALTA UTILIZAR A UTILITIES PARA ATUALIZAR A IMAGEM DINAMICAMENTE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! =========>
 	public void atualizeRepresentation()
 	{
 		//Remove imagens antigas:
@@ -72,7 +73,7 @@ public class SquareButton extends JButton{
 				Piece selectedPiece = Board.instance.getSquare(position[0] - 1, position[1] - 1).getPiece();
 
 				if (selectedPiece != null && StateMachineController.instance.getCurrentPlayer() == selectedPiece.getPlayer()){
-					Board.instance.setSelectedPiece(selectedPiece);
+					StateMachineController.instance.setSelectedPiece(selectedPiece);
 					StateMachineController.instance.changeTo(new MoveSelectionState());
 				}
 			}

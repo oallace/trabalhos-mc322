@@ -1,7 +1,6 @@
 package mc322.lab07.controller.state;
 
 import mc322.lab07.controller.StateMachineController;
-import mc322.lab07.model.Board;
 
 public class PieceSelectionState extends State{
 	
@@ -11,7 +10,7 @@ public class PieceSelectionState extends State{
 	}
 
 	public void exit(){
-		System.out.println("Selected Piece : " + Board.instance.getSelectedPiece().getName());
+		System.out.println("Selected Piece : " + StateMachineController.instance.getSelectedPiece().getName());
 	}
 	
 }

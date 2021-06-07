@@ -15,15 +15,12 @@ public class Board {
 	
 	private ArrayList<Piece> blackPieces;
 	
-	private Piece selectedPiece;
-	
 	
 	public Board(){
 		instance = this;
 		board = new Square[8][8];
 		whitePieces = new ArrayList<>();
 		blackPieces = new ArrayList<>();
-		selectedPiece = null;
 		
 		
 		for (int i = 0; i < 8; i++) {
@@ -35,7 +32,10 @@ public class Board {
 	}
 	
 	public Square getSquare(int i, int j) {
-		return this.board[i][j];
+		if (i>=0 && i<=7 && j>=0 && j<=7){
+			return this.board[i][j];
+		}
+		return null;
 	}
 	
 	
@@ -48,16 +48,6 @@ public class Board {
 		if (board[i][j].getPiece() != null)
 			return board[i][j].getPiece().getName();
 		return null;
-	}
-	
-	
-	public Piece getSelectedPiece() {
-		return this.selectedPiece;
-	}
-	
-	
-	public void setSelectedPiece(Piece piece) {
-		this.selectedPiece = piece;
 	}
 	
 	
