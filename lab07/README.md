@@ -1,5 +1,6 @@
 # Sobre
-Versão em construção do trabalho final de MC322, na UNICAMP
+Versão em construção do trabalho final de MC322, na UNICAMP.  
+O código do projeto desenvolvido até então pode ser encontrado em [src/mc322/lab07][./src/mc322/lab07].
 
 # Equipe
 * Igor Henrique Buranello dos Santos
