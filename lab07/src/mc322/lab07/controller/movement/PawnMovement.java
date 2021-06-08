@@ -25,12 +25,12 @@ public class PawnMovement extends Movement{
 
     int[] getDirection(){
         int[] direction = new int[2];
-        direction[0] = 0;
+        direction[1] = 0;
         if (StateMachineController.instance.getCurrentPlayer().getTeam() == 'W'){
-            direction[1] = 1;
+            direction[0] = -1;
         }
         else{
-            direction[1] = -1;
+            direction[0] = 1;
         }
         return direction;
     }
@@ -40,12 +40,12 @@ public class PawnMovement extends Movement{
         Square square;
         Piece selectedPiece = StateMachineController.instance.getSelectedPiece();
 
-        square = Board.instance.getSquare(selectedPiece.getSquare().getPosition()[0]-1, selectedPiece.getSquare().getPosition()[1]+direction[1]);
+        square = Board.instance.getSquare(selectedPiece.getSquare().getPosition()[0]+direction[0], selectedPiece.getSquare().getPosition()[1]-1);
         if (square != null && isEnemy(square)){
             pawnAttack.add(square.getPosition());
         }
 
-        square = Board.instance.getSquare(selectedPiece.getSquare().getPosition()[0]+1, selectedPiece.getSquare().getPosition()[1]+direction[1]);
+        square = Board.instance.getSquare(selectedPiece.getSquare().getPosition()[0]+direction[0], selectedPiece.getSquare().getPosition()[1]+1);
         if (square != null && isEnemy(square)){
             pawnAttack.add(square.getPosition());
         }

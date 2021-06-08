@@ -18,12 +18,12 @@ public abstract class Movement {
         return false;
     }
 
-    protected ArrayList<int[]> untilBlockedPath(int xDirection, int yDirection, boolean includeBlocked, int limit){
+    protected ArrayList<int[]> untilBlockedPath(int yDirection, int xDirection, boolean includeBlocked, int limit){
         ArrayList<int[]> moves = new ArrayList<>(); 
         Square currentSquare = StateMachineController.instance.getSelectedPiece().getSquare();
 
         while (currentSquare != null && moves.size() < limit){
-            currentSquare = Board.instance.getSquare(currentSquare.getPosition()[0]+xDirection, currentSquare.getPosition()[1]+yDirection);
+            currentSquare = Board.instance.getSquare(currentSquare.getPosition()[0]+yDirection, currentSquare.getPosition()[1]+xDirection);
             
             if (currentSquare != null){
                 if (currentSquare.getPiece() == null){
