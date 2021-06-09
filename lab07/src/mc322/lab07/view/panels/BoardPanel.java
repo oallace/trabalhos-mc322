@@ -21,13 +21,15 @@ public class BoardPanel extends JPanel{
 		
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				SquareButton squareButton = new SquareButton(i+1, j+1);
+				SquareButton squareButton = new SquareButton(i, j);
 				squareButton.setLayout(null);
 				if (aux == 0) {
 					squareButton.setBackground(new Color(244, 241, 214)); //244, 241, 214
+					squareButton.setColor("beige");
 				}
 				else {
 					squareButton.setBackground(new Color(128, 165, 91));  //128, 165, 91
+					squareButton.setColor("green");
 				}
 				
 				if (i == 7) {
@@ -43,7 +45,7 @@ public class BoardPanel extends JPanel{
 						squareButton.add(new TextLabel(Integer.toString(8 - i), 4, 4, 18, 18, 19, 244, 241, 214));
 				}
 
-				squareButton.atualizeRepresentation();
+				squareButton.atualizeRepresentation(0);
 				this.add(squareButton);
 				Window.instance.setSquareButton(squareButton, i, j);
 				aux = (aux == 1) ? 0:1;

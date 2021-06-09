@@ -19,6 +19,8 @@ public class StateMachineController {
 	private State currentState;
 
 	private Piece selectedPiece;
+
+	private int[] selectedHighlight;
 	
 	
 	public StateMachineController(String namePlayer1, String namePlayer2){
@@ -27,6 +29,7 @@ public class StateMachineController {
 		player2 = new Player('B', 0, namePlayer2);
 		currentState = null;
 		selectedPiece = null;
+		selectedHighlight = new int[2];
 	}
 	
 	
@@ -56,6 +59,15 @@ public class StateMachineController {
 	
 	public void setSelectedPiece(Piece piece) {
 		this.selectedPiece = piece;
+	}
+
+	public int[] getSelectedHighlight(){
+		return this.selectedHighlight;
+	}
+
+	public void setSelectedHighlight(int iPos, int jPos){
+		this.selectedHighlight[0] = iPos;
+		this.selectedHighlight[1] = jPos;
 	}
 	
 	
