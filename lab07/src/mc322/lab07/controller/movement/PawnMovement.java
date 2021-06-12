@@ -23,10 +23,11 @@ public class PawnMovement extends Movement{
         return moves;
     }
 
+    // Pega a direção de movimento do peão.
     int[] getDirection(){
         int[] direction = new int[2];
         direction[1] = 0;
-        if (StateMachineController.instance.getCurrentPlayer().getTeam() == 'W'){
+        if (StateMachineController.instance.getCurrentPlayer().getTeam() == "WhiteTeam"){
             direction[0] = -1;
         }
         else{
@@ -35,6 +36,8 @@ public class PawnMovement extends Movement{
         return direction;
     }
 
+    // Analisa se nas diagonais no sentido retornado pela getDirection() há alguma peça inimiga. Se sim, o peão pode comê-las, logo são
+    // posições válidas para o movimento.
     ArrayList<int[]> getPawnAttack(int[] direction){
         ArrayList<int[]> pawnAttack = new ArrayList<>();
         Square square;

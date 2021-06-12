@@ -1,7 +1,5 @@
 package mc322.lab07.view.panels;
 
-import java.awt.Color;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 

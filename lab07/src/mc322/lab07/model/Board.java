@@ -7,9 +7,9 @@ import mc322.lab07.model.squares.Square;
 
 public class Board {
 
-	public static Board instance;
-	
-	private Square board[][];
+	public static Board instance;  // Instancia estática para acessar o board através do Controller e do View
+
+	private Square board[][];      // Matriz de Squares (quadrados/blocos) do tabuleiro, os quais guardam as peças.
 	
 	private ArrayList<Piece> whitePieces;
 	
@@ -22,7 +22,7 @@ public class Board {
 		whitePieces = new ArrayList<>();
 		blackPieces = new ArrayList<>();
 		
-		
+		// Inicializa os Squares. As peças são adicionadas ao tabuleiro pelo LoadState no Controller.
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				Square square = new Square(i, j);
@@ -31,17 +31,14 @@ public class Board {
 		}
 	}
 	
+	
 	public Square getSquare(int i, int j) {
 		if (i>=0 && i<=7 && j>=0 && j<=7){
 			return this.board[i][j];
 		}
 		return null;
 	}
-	
-	
-	public void setPiece(int i, int j, Piece piece) {
-		this.board[i][j].setPiece(piece);
-	}
+
 
 	public String getPieceName(int i, int j)
 	{
@@ -51,20 +48,32 @@ public class Board {
 	}
 	
 	
-	public ArrayList<Piece> getTeamPieces(char team){
-		if (team == 'W') {
+	public ArrayList<Piece> getTeamPieces(String team){
+		if (team == "WhiteTeam") {
 			return this.whitePieces;
 		}
 		return this.blackPieces;
 	}
 	
-	
-	public void addTeamPiece(char team, Piece piece) {
-		if (team == 'W') {
+	// Adiciona uma peça ao ArrayList do time
+	public void addTeamPiece(String team, Piece piece) {
+		if (team == "WhiteTeam") {
 			this.whitePieces.add(piece);
 		}
 		else {
 			this.blackPieces.add(piece);
+		}
+	}
+
+	// Remove uma peça do ArrayList do time
+	public void removeTeamPiece(Piece piece){
+		ArrayList<Piece> teamPieces = Board.instance.getTeamPieces(piece.getPlayer().getTeam());
+
+		for (int i = 0; i < teamPieces.size(); i++){
+			if (teamPieces.get(i) == piece){
+				teamPieces.remove(i);
+				break;
+			}
 		}
 	}
 }

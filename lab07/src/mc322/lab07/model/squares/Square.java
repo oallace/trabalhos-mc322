@@ -3,9 +3,12 @@ package mc322.lab07.model.squares;
 import mc322.lab07.model.pieces.Piece;
 
 public class Square {
+	
 	private int position[];
 	
 	private Piece piece;
+
+	private boolean isHighlighted; // Indica se o square está marcado com movimento de paça.
 	
 	// Haverá mais informação, como se este square está congelado.
 	
@@ -14,6 +17,7 @@ public class Square {
 		position[0] = iPos;
 		position[1] = jPos;
 		piece = null;
+		isHighlighted = false;
 	}
 	
 	
@@ -27,5 +31,13 @@ public class Square {
 	
 	public void setPiece(Piece piece) {
 		this.piece = piece;
+	}
+
+	public boolean getIsHighlighted(){
+		return this.isHighlighted;
+	}
+
+	public void setIsHighlighted(boolean bool){
+		this.isHighlighted = bool;
 	}
 }

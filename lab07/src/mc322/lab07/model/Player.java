@@ -2,18 +2,20 @@ package mc322.lab07.model;
 
 public class Player {
 	
-	private char team;
+	private String team;
+
 	private String name;
+	
 	private int score;
 	
 	
-	public Player(char team, int score, String name){
+	public Player(String team, int score, String name){
 		this.team = team;
 		this.score = score;
-		this.name = name; // precisa receber o nome conforme o jogador
+		this.name = name;
 	}
 	
-	public char getTeam() {
+	public String getTeam() {
 		return this.team;
 	}
 	

@@ -4,13 +4,14 @@ import mc322.lab07.controller.StateMachineController;
 
 public class PieceSelectionState extends State{
 	
-	public void enter() {
-		System.out.println("PieceSelectionState:");
+	public void enter() {                            // Seleção de peça. Nada ocorre até o jogador clicar em uma peça e a máquina alterar 
+		System.out.println("PieceSelectionState:");  // o estado para o estado de seleção de movimento.
 		
 	}
 
 	public void exit(){
-		System.out.println("Selected Piece : " + StateMachineController.instance.getSelectedPiece().getName());
+		if (StateMachineController.instance.getSelectedPiece() != null)
+			System.out.println("Selected Piece : " + StateMachineController.instance.getSelectedPiece().getName());
 	}
 	
 }

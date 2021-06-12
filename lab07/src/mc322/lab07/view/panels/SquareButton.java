@@ -5,24 +5,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
-import javax.swing.text.Position;
 
 import mc322.lab07.controller.StateMachineController;
 import mc322.lab07.controller.state.PieceSelectionState;
-import mc322.lab07.controller.state.TurnBeginState;
 import mc322.lab07.controller.state.MoveSelectionState;
 import mc322.lab07.controller.state.PieceMovementState;
-import mc322.lab07.view.Window;
 import mc322.lab07.model.Board;
 import mc322.lab07.model.pieces.Piece;
 
 public class SquareButton extends JButton{
 
 	private static final long serialVersionUID = 4934802567644563818L;
+
 	private int[] position;
-	private Component[] components;
+
+	private Component[] components; // Lista de Componentes que foram adicionados ao button: 0 : Pieces
+                                    //                                                       1 : Highlights
 	private String color;
-	private boolean isHighlighted;
+	
 	
 	public SquareButton(int iPos, int jPos){
 		super();
@@ -30,7 +30,6 @@ public class SquareButton extends JButton{
 		position[0] = iPos;
 		position[1] = jPos;
 		components = new Component[2]; // 0 : peça   1 : highlight
-		isHighlighted = false;
 		addActionListener(new SquareButtonlHandler());
 
 		// Estilo do botão:
@@ -51,34 +50,18 @@ public class SquareButton extends JButton{
 		this.color = color;
 	}
 
-	public boolean getIsHighlighted(){
-		return this.isHighlighted;
-	}
 
-	public void setIsHighlighted(boolean bool){
-		this.isHighlighted = bool;
-	}
-
-	
-	// FALTA UTILIZAR A UTILITIES PARA ATUALIZAR A IMAGEM DINAMICAMENTE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! =========>
-	public void atualizeRepresentation(int idx)
-	{
-		//Remove imagens antigas:
-			// remove a representação passada de peça:
+	// Remove um componente do Button. idx é o índice daquele componente no vetor components
+	public void removeImage(int idx){
 		if (components[idx] != null)
 		{
 			this.remove(components[idx]);
 			components[idx] = null;
 		}
 		SwingUtilities.updateComponentTreeUI(this);
-		// novas imagens sobre o Square:
-		if (idx == 0){
-			String pieceName = Window.instance.getPieceName(position[0], position[1]);
-			if (pieceName != null)
-				addImage(idx, "../images/" +pieceName + ".png", 10, 15, 55, 55);
-		}
 	}
 	
+	// Adiciona uma imagem ao Button
 	public void addImage(int idx, String imagePath, int x, int y, int width, int height) {
 		if (imagePath != null) {
 			ImageLabel newImage = new ImageLabel(imagePath, x, y, width, height);
@@ -100,20 +83,33 @@ public class SquareButton extends JButton{
 			if (StateMachineController.instance.getCurrentState() instanceof PieceSelectionState ||
 				StateMachineController.instance.getCurrentState() instanceof MoveSelectionState){
 					
-					// Estado de MoveSelection
-					if (isHighlighted){
+					// Se está no estado de MoveSelection e clicou em um highlight
+					if (Board.instance.getSquare(position[0], position[1]).getIsHighlighted()){
 						StateMachineController.instance.setSelectedHighlight(position[0], position[1]);
 						StateMachineController.instance.changeTo(new PieceMovementState());
 					}
 					
-					// Estado de PieceSelection
+					// Se esta no stado de PieceSelection ou MoveSelection e clicou em uma peça
 					else if (Board.instance.getSquare(position[0], position[1]).getPiece() != null){
 						Piece selectedPiece = Board.instance.getSquare(position[0], position[1]).getPiece();
-
-						if (selectedPiece != null && StateMachineController.instance.getCurrentPlayer() == selectedPiece.getPlayer()){
+						
+						// Se esta peça esta sendo clicada pela segunda vez consecutiva, retira os highlights dela
+						if (selectedPiece  == StateMachineController.instance.getSelectedPiece()){
+							StateMachineController.instance.setSelectedPiece(null);
+							StateMachineController.instance.changeTo(new PieceSelectionState());
+						}
+						
+						// Se é uma nova peça sendo clicada, vai para o MoveSelectionState para adicionar os highlights
+						else if (selectedPiece != null && StateMachineController.instance.getCurrentPlayer() == selectedPiece.getPlayer()){
 							StateMachineController.instance.setSelectedPiece(selectedPiece);
 							StateMachineController.instance.changeTo(new MoveSelectionState());
 						}
+					}
+					
+					// Se clicar em um square vazio, volta para o estado de seleção de peça e retira qualquer highlight que estivesse marcado
+					else{
+						StateMachineController.instance.setSelectedPiece(null);
+						StateMachineController.instance.changeTo(new PieceSelectionState());
 					}
 			}
 		}

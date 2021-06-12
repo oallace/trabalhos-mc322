@@ -4,7 +4,7 @@ import mc322.lab07.controller.StateMachineController;
 
 public class TurnBeginState extends State{
 	
-	public void enter() {
+	public void enter() {                         // Estado de escolha do jogador atual. No final muda para o estado de seleção de peça.
 		System.out.println("TurnBeginState:");
 		
 		if (StateMachineController.instance.getCurrentPlayer() == StateMachineController.instance.getPlayer1())

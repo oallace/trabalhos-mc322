@@ -19,6 +19,7 @@ public class BoardPanel extends JPanel{
 		setBackground(Color.DARK_GRAY);
 		int aux = 0;
 		
+		// Instancia os Paineis que representam os squares dentro do BoardPanel
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				SquareButton squareButton = new SquareButton(i, j);
@@ -45,9 +46,9 @@ public class BoardPanel extends JPanel{
 						squareButton.add(new TextLabel(Integer.toString(8 - i), 4, 4, 18, 18, 19, 244, 241, 214));
 				}
 
-				squareButton.atualizeRepresentation(0);
 				this.add(squareButton);
 				Window.instance.setSquareButton(squareButton, i, j);
+				Window.instance.atualizeSquareRepresentation(i, j, true);
 				aux = (aux == 1) ? 0:1;
 			}
 			

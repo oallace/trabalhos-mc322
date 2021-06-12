@@ -7,9 +7,13 @@ import mc322.lab07.model.squares.Square;
 public abstract class Piece {
 
 	protected Player player;
-	protected Movement movement;
+
+	protected Movement movement;  // Movement são os movimentos que determinada peça pode realizar.
+
 	protected Square square;
+
 	protected boolean wasMoved;
+	
 	protected String name;
 
 	public Piece(Player player, Square square) {

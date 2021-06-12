@@ -10,6 +10,6 @@ public class Rook extends Piece{
 		super(player, square);
 		this.movement = new RookMovement();
 		// falta decidir com base no jogador:
-		name = player.getTeam()+"Rook";
+		name = player.getTeam().substring(0, 1)+"Rook";
 	}
 }
