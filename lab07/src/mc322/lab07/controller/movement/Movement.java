@@ -47,4 +47,12 @@ public abstract class Movement {
         }
         return moves;
     }
+
+    // Altera o moveType dos squares nas posições dadas para NormalMovement
+    public void setNormalMovement(ArrayList<int[]> moves){
+        for (int i = 0; i < moves.size(); i++){
+            int[] position = moves.get(i);
+            Board.instance.getSquare(position[0], position[1]).setMoveType(MoveType.NormalMovement);
+        }
+    }
 }

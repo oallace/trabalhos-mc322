@@ -1,5 +1,6 @@
 package mc322.lab07.model.squares;
 
+import mc322.lab07.controller.movement.MoveType;
 import mc322.lab07.model.pieces.Piece;
 
 public class Square {
@@ -9,6 +10,8 @@ public class Square {
 	private Piece piece;
 
 	private boolean isHighlighted; // Indica se o square está marcado com movimento de paça.
+
+	private MoveType moveType;  // Indica se um movimento de uma peça para este Square será normal ou algum movimento especial
 	
 	// Haverá mais informação, como se este square está congelado.
 	
@@ -39,5 +42,13 @@ public class Square {
 
 	public void setIsHighlighted(boolean bool){
 		this.isHighlighted = bool;
+	}
+
+	public MoveType getMoveType(){
+		return moveType;
+	}
+
+	public void setMoveType(MoveType movetype){
+		this.moveType = movetype;
 	}
 }

@@ -2,6 +2,11 @@ package mc322.lab07.controller.movement;
 
 import java.util.ArrayList;
 
+import mc322.lab07.controller.StateMachineController;
+import mc322.lab07.model.Board;
+import mc322.lab07.model.pieces.Rook;
+import mc322.lab07.model.squares.Square;
+
 public class KingMovement extends Movement{
 
     public ArrayList<int[]> getValidMoves(){
@@ -17,6 +22,60 @@ public class KingMovement extends Movement{
         moves.addAll(untilBlockedPath(1, -1, true, 1));
         moves.addAll(untilBlockedPath(-1, -1, true, 1));
 
+        setNormalMovement(moves);
+
+        // Obter novas posições para o movimento do Rei caso o castling seja uma escolha possível
+        moves.addAll(castling());
+
         return moves;
+    }
+
+
+    // Obter posições para o movimento do castling
+    ArrayList<int[]> castling(){
+        ArrayList<int[]> moves = new  ArrayList<>();
+
+        if (StateMachineController.instance.getSelectedPiece().getWasMoved()){
+            return moves;
+        }
+        // Checa as posições para direita
+        int[] position = checkRook(1);
+        if (position != null){
+            moves.add(position);
+            Board.instance.getSquare(position[0], position[1]).setMoveType(MoveType.CastlingMovement);
+        }
+        // Checa as posições para esquerda
+        position = checkRook(-1);
+        if (position != null){
+            moves.add(position);
+            Board.instance.getSquare(position[0], position[1]).setMoveType(MoveType.CastlingMovement);
+        }
+
+        return moves;
+    }
+
+
+    // Analisar condições para o castling ser possível
+    int[] checkRook(int xDirection){
+        Square currentSquare = StateMachineController.instance.getSelectedPiece().getSquare();
+        currentSquare = Board.instance.getSquare(currentSquare.getPosition()[0], currentSquare.getPosition()[1]+xDirection);
+
+        while (currentSquare != null){
+            if (currentSquare.getPiece() != null){
+                break;
+            }
+
+            currentSquare = Board.instance.getSquare(currentSquare.getPosition()[0], currentSquare.getPosition()[1]+xDirection);
+        }
+
+        if (currentSquare == null){
+            return null;
+        }
+        
+        if (!(currentSquare.getPiece() instanceof Rook) || currentSquare.getPiece().getWasMoved()){
+            return null;
+        }
+
+        return currentSquare.getPosition();
     }
 }

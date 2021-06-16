@@ -13,6 +13,8 @@ public class RookMovement extends Movement{
         moves.addAll(untilBlockedPath(0, 1, true, 8));
         moves.addAll(untilBlockedPath(0, -1, true, 8));
 
+        setNormalMovement(moves);
+
         return moves;
     }
 }

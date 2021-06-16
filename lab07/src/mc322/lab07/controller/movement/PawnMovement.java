@@ -19,6 +19,13 @@ public class PawnMovement extends Movement{
         ArrayList<int[]> moves = new ArrayList<>();
         moves.addAll(untilBlockedPath(direction[0], direction[1], false, limit));
         moves.addAll(getPawnAttack(direction));
+        setNormalMovement(moves);
+
+        for (int i = 0; i < moves.size(); i++){
+            int[] position = moves.get(i);
+            if (position[0] == 0 || position[0] == 7)
+                Board.instance.getSquare(position[0], position[1]).setMoveType(MoveType.PawnPromotionMovement);
+        }
 
         return moves;
     }

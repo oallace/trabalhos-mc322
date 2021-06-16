@@ -13,6 +13,8 @@ public class BishopMovement extends Movement{
         moves.addAll(untilBlockedPath(1, -1, true, 8));
         moves.addAll(untilBlockedPath(-1, -1, true, 8));
 
+        setNormalMovement(moves);
+
         return moves;
     }
 }
