@@ -40,7 +40,7 @@ public class PieceMovementState extends State{   // Movimenta a peça e inicia o
         // Altera a posição da peça no Board e atualiza a imagem do tabuleiro.
         Piece piece = StateMachineController.instance.getSelectedPiece();
         piece.getSquare().setPiece(null);
-        Window.instance.atualizeSquareRepresentation(piece.getSquare().getPosition()[0], piece.getSquare().getPosition()[1], true);
+        Window.instance.actualizeSquareRepresentation(piece.getSquare().getPosition()[0], piece.getSquare().getPosition()[1], true);
         piece.setSquare(Board.instance.getSquare(StateMachineController.instance.getSelectedHighlight()[0], StateMachineController.instance.getSelectedHighlight()[1]));
         
         // Come uma peça inimiga caso haja alguma na posição alvo.
@@ -48,7 +48,7 @@ public class PieceMovementState extends State{   // Movimenta a peça e inicia o
             Piece deadPiece = piece.getSquare().getPiece();
             System.out.println("The " + deadPiece.getName() + " was dead!");
             deadPiece.getSquare().setPiece(null);
-            Window.instance.atualizeSquareRepresentation(deadPiece.getSquare().getPosition()[0], deadPiece.getSquare().getPosition()[1], true);
+            Window.instance.actualizeSquareRepresentation(deadPiece.getSquare().getPosition()[0], deadPiece.getSquare().getPosition()[1], true);
             
             // Retirar ela da array List do jogador, e adicionar um imageLabel na Window das peças capturadas do inimigo.
             Board.instance.removeTeamPiece(deadPiece);
@@ -57,7 +57,7 @@ public class PieceMovementState extends State{   // Movimenta a peça e inicia o
         // Movimenta a peça para a posição alvo.
         piece.getSquare().setPiece(piece);
         piece.setWasMoved();
-        Window.instance.atualizeSquareRepresentation(piece.getSquare().getPosition()[0], piece.getSquare().getPosition()[1], true);
+        Window.instance.actualizeSquareRepresentation(piece.getSquare().getPosition()[0], piece.getSquare().getPosition()[1], true);
     }
 
 

@@ -2,6 +2,7 @@ package mc322.lab07.view;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.io.Serial;
 import javax.swing.JFrame;
 
 import mc322.lab07.controller.StateMachineController;
@@ -15,13 +16,12 @@ import mc322.lab07.view.panels.TextLabel;
 
 public class Window extends JFrame{
 	
+	@Serial
 	private static final long serialVersionUID = 7446721714968740806L;
 
-	public static Window instance;  // Instância estática para acessar o View a partir do Board e do Controller.
+	public static Window instance;  // Instância estática para acesso.
 
-	private Container contentPane;  // Matriz que guarda os Squares dentro do BoardPanel.
-
-	private SquareButton board[][];
+	private final SquareButton[][] board;
 	
 	
 	public Window(){
@@ -33,17 +33,18 @@ public class Window extends JFrame{
 		setSize(710, 820);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		
-		this.contentPane = getContentPane();
-		this.contentPane.setLayout(null);
-		this.contentPane.setBackground(Color.darkGray);
+
+		// Matriz que guarda os Squares dentro do BoardPanel.
+		Container contentPane = getContentPane();
+		contentPane.setLayout(null);
+		contentPane.setBackground(Color.darkGray);
 		
 		// Instancia os componentes do jogo dentro do contentPane
-		this.contentPane.add(new BoardPanel());
-		this.contentPane.add(new TextLabel(StateMachineController.instance.getPlayer1().getName(), 75, 10, 300, 20, 17, 255, 255, 255)); // solicitar nome para Player
-		this.contentPane.add(new TextLabel(StateMachineController.instance.getPlayer2().getName(), 75, 728, 300, 20, 17, 255, 255, 255));
-		this.contentPane.add(new ImageLabel("../images/user.png", 20, 9, 45, 45)); // editar tamanho da imagem.
-		this.contentPane.add(new ImageLabel("../images/user.png", 20, 727, 45, 45));
+		contentPane.add(new BoardPanel());
+		contentPane.add(new TextLabel(StateMachineController.instance.getPlayer1().getName(), 75, 10, 300, 20, 17, 255, 255, 255)); // solicitar nome para Player
+		contentPane.add(new TextLabel(StateMachineController.instance.getPlayer2().getName(), 75, 728, 300, 20, 17, 255, 255, 255));
+		contentPane.add(new ImageLabel("../images/user.png", 20, 9, 45, 45)); // editar tamanho da imagem.
+		contentPane.add(new ImageLabel("../images/user.png", 20, 727, 45, 45));
 		
 		setVisible(true);
 	}
@@ -53,8 +54,8 @@ public class Window extends JFrame{
 		return this.board[iPos][jPos];
 	}
 	
-	public void setSquareButton(SquareButton squarePanel, int iPos, int jPos) {
-		this.board[iPos][jPos] = squarePanel;
+	public void setSquareButton(SquareButton square, int iPos, int jPos) {
+		this.board[iPos][jPos] = square;
 	}
 
 	public String getPieceName(int iPos, int jPos)
@@ -64,7 +65,7 @@ public class Window extends JFrame{
 	
 
 	// Atualiza a representação da peça, do highlight e dos efeitos, respectivamente, de um dado square do tabuleiro.
-	public void atualizeSquareRepresentation(int iPos, int jPos, boolean attPiece){
+	public void actualizeSquareRepresentation(int iPos, int jPos, boolean attPiece){
 		Square square = Board.instance.getSquare(iPos, jPos);
 		SquareButton squareButton = this.board[iPos][jPos];
 
@@ -85,7 +86,7 @@ public class Window extends JFrame{
 			
 		// Adiciona um highlight
 		if (square.getIsHighlighted()){
-			if (squareButton.getColor() == "beige")
+			if (squareButton.getColor().equals("beige"))
 				squareButton.addImage(1, "../images/circleFullBeige.png", 10, 15, 70, 70);
 			else
 				squareButton.addImage(1, "../images/circleFullGreen.png", 10, 15, 70, 70);

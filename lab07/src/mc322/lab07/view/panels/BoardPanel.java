@@ -48,7 +48,7 @@ public class BoardPanel extends JPanel{
 
 				this.add(squareButton);
 				Window.instance.setSquareButton(squareButton, i, j);
-				Window.instance.atualizeSquareRepresentation(i, j, true);
+				Window.instance.actualizeSquareRepresentation(i, j, true);
 				aux = (aux == 1) ? 0:1;
 			}
 			

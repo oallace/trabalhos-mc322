@@ -17,8 +17,8 @@ public abstract class SpecialsMovements {
         // Retirar as peças do tabuleiro e atualizar a imagem
         king.getSquare().setPiece(null);
         rook.getSquare().setPiece(null);
-        Window.instance.atualizeSquareRepresentation(king.getSquare().getPosition()[0], king.getSquare().getPosition()[1], true);
-        Window.instance.atualizeSquareRepresentation(rook.getSquare().getPosition()[0], rook.getSquare().getPosition()[1], true);
+        Window.instance.actualizeSquareRepresentation(king.getSquare().getPosition()[0], king.getSquare().getPosition()[1], true);
+        Window.instance.actualizeSquareRepresentation(rook.getSquare().getPosition()[0], rook.getSquare().getPosition()[1], true);
 
         // Colocar as peças nas novas posições e atualizar a imagem
         int direction = rook.getSquare().getPosition()[1] - king.getSquare().getPosition()[1];
@@ -32,8 +32,8 @@ public abstract class SpecialsMovements {
         }
         king.getSquare().setPiece(king);
         rook.getSquare().setPiece(rook);
-        Window.instance.atualizeSquareRepresentation(king.getSquare().getPosition()[0], king.getSquare().getPosition()[1], true);
-        Window.instance.atualizeSquareRepresentation(rook.getSquare().getPosition()[0], rook.getSquare().getPosition()[1], true);
+        Window.instance.actualizeSquareRepresentation(king.getSquare().getPosition()[0], king.getSquare().getPosition()[1], true);
+        Window.instance.actualizeSquareRepresentation(rook.getSquare().getPosition()[0], rook.getSquare().getPosition()[1], true);
 
         king.setWasMoved();
         rook.setWasMoved();
@@ -47,7 +47,7 @@ public abstract class SpecialsMovements {
         
         // Retira a peça do tabuleiro e atualiza a imagem
         pawn.getSquare().setPiece(null);
-        Window.instance.atualizeSquareRepresentation(pawn.getSquare().getPosition()[0], pawn.getSquare().getPosition()[1], true);
+        Window.instance.actualizeSquareRepresentation(pawn.getSquare().getPosition()[0], pawn.getSquare().getPosition()[1], true);
         Board.instance.removeTeamPiece(pawn);
 
         // Cria uma nova peça rainha, adiciona ela no tabuleiro e atualiza a imagem
@@ -60,14 +60,14 @@ public abstract class SpecialsMovements {
             Piece deadPiece = highlightSquare.getPiece();
             System.out.println("The " + deadPiece.getName() + " was dead!");
             deadPiece.getSquare().setPiece(null);
-            Window.instance.atualizeSquareRepresentation(deadPiece.getSquare().getPosition()[0], deadPiece.getSquare().getPosition()[1], true);
+            Window.instance.actualizeSquareRepresentation(deadPiece.getSquare().getPosition()[0], deadPiece.getSquare().getPosition()[1], true);
             
             // Retirar ela da array List do jogador, e adicionar um imageLabel na Window das peças capturadas do inimigo.
             Board.instance.removeTeamPiece(deadPiece);
         }
 
         queen.getSquare().setPiece(queen);
-        Window.instance.atualizeSquareRepresentation(queen.getSquare().getPosition()[0], queen.getSquare().getPosition()[1], true);
+        Window.instance.actualizeSquareRepresentation(queen.getSquare().getPosition()[0], queen.getSquare().getPosition()[1], true);
     }
 
 

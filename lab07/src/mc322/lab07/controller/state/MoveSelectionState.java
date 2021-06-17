@@ -25,7 +25,7 @@ public class MoveSelectionState extends State{  // Estado de seleção de movime
 		// Atualiza o tabuleiro marcando as posições válidas
 		for(int i = 0; i < moves.size(); i++){
 			Board.instance.getSquare(moves.get(i)[0], moves.get(i)[1]).setIsHighlighted(true);
-			Window.instance.atualizeSquareRepresentation(moves.get(i)[0], moves.get(i)[1], false);
+			Window.instance.actualizeSquareRepresentation(moves.get(i)[0], moves.get(i)[1], false);
 		}
 	}
 	
@@ -34,7 +34,7 @@ public class MoveSelectionState extends State{  // Estado de seleção de movime
 		
 		for(int i = 0; i < moves.size(); i++){
 			Board.instance.getSquare(moves.get(i)[0], moves.get(i)[1]).setIsHighlighted(false);
-			Window.instance.atualizeSquareRepresentation(moves.get(i)[0], moves.get(i)[1], false);
+			Window.instance.actualizeSquareRepresentation(moves.get(i)[0], moves.get(i)[1], false);
 		}
 
 		System.out.println("Selected Highlight:  Row " + StateMachineController.instance.getSelectedHighlight()[0] + " - Column " + StateMachineController.instance.getSelectedHighlight()[1]);
