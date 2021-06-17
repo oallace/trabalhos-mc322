@@ -11,12 +11,10 @@ Cada nação tem habilidades especiais que mudam drasticamente o fluxo da partid
 * Wallace Gustavo Santos Lima - RA 195512
 
 ## Vídeos do Projeto
-### Vídeo da prévia
-
-![Vídeo da prévia](./assets/about/preview_video.mkv)
+### ![Vídeo da prévia](./assets/about/preview_video.mkv)
 
 ## Slides do Projeto
-### Slides da prévia
+### ![Slides da prévia](./assets/about/preview_slides.pdf)
 
 colocar slides
 
