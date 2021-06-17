@@ -2,12 +2,14 @@ package mc322.lab07.view.panels;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.io.Serial;
 import javax.swing.JPanel;
 
 import mc322.lab07.view.Window;
 
 public class BoardPanel extends JPanel{
 	
+	@Serial
 	private static final long serialVersionUID = 5792445905048410976L;
 	
 	public BoardPanel(){
