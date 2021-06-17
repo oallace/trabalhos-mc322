@@ -3,6 +3,7 @@ package mc322.lab07.view.panels;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serial;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
@@ -15,15 +16,16 @@ import mc322.lab07.model.pieces.Piece;
 
 public class SquareButton extends JButton{
 
+	@Serial
 	private static final long serialVersionUID = 4934802567644563818L;
 
-	private int[] position;
+	private final int[] position;
 
-	private Component[] components; // Lista de Componentes que foram adicionados ao button: 0 : Pieces
+	private final Component[] components; // Lista de Componentes que foram adicionados ao button: 0 : Pieces
                                     //                                                       1 : Highlights
 	private String color;
-	
-	
+
+
 	public SquareButton(int iPos, int jPos){
 		super();
 		position = new int[2];    // A posição será usada na clickFunction para obter as coordenadas do square clicado
@@ -36,8 +38,8 @@ public class SquareButton extends JButton{
 		this.setBorderPainted(false);
 		this.setFocusPainted(false);
 	}
-	
-	
+
+
 	public int[] getPosition() {
 		return this.position;
 	}
@@ -49,7 +51,6 @@ public class SquareButton extends JButton{
 	public void setColor(String color){
 		this.color = color;
 	}
-
 
 	// Remove um componente do Button. idx é o índice daquele componente no vetor components
 	public void removeImage(int idx){
