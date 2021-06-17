@@ -22,8 +22,6 @@ public class KingMovement extends Movement{
         moves.addAll(untilBlockedPath(1, -1, true, 1));
         moves.addAll(untilBlockedPath(-1, -1, true, 1));
 
-        setNormalMovement(moves);
-
         // Obter novas posições para o movimento do Rei caso o castling seja uma escolha possível
         moves.addAll(castling());
 

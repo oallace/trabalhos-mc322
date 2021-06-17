@@ -21,6 +21,7 @@ public class Square {
 		position[1] = jPos;
 		piece = null;
 		isHighlighted = false;
+		moveType = MoveType.NormalMovement;
 	}
 	
 	

@@ -3,7 +3,9 @@ package mc322.lab07.controller.state;
 import java.util.ArrayList;
 
 import mc322.lab07.controller.StateMachineController;
+import mc322.lab07.controller.movement.MoveType;
 import mc322.lab07.model.Board;
+import mc322.lab07.model.squares.Square;
 import mc322.lab07.view.Window;
 
 public class MoveSelectionState extends State{  // Estado de seleção de movimento. No final chama o estado de movimento de peça.
@@ -33,8 +35,14 @@ public class MoveSelectionState extends State{  // Estado de seleção de movime
 	public void exit() {
 		
 		for(int i = 0; i < moves.size(); i++){
-			Board.instance.getSquare(moves.get(i)[0], moves.get(i)[1]).setIsHighlighted(false);
+			// Desmarca os highlights
+			Square square = Board.instance.getSquare(moves.get(i)[0], moves.get(i)[1]);
+			square.setIsHighlighted(false);
 			Window.instance.actualizeSquareRepresentation(moves.get(i)[0], moves.get(i)[1], false);
+
+			// Caso haja algum square com moveType especial que não seja o square selecionado, atualiza o moveType para NormalMovement
+			if (square.getMoveType() != MoveType.NormalMovement && square != Board.instance.getSquare(StateMachineController.instance.getSelectedHighlight()[0], StateMachineController.instance.getSelectedHighlight()[1]))
+				square.setMoveType(MoveType.NormalMovement);
 		}
 
 		System.out.println("Selected Highlight:  Row " + StateMachineController.instance.getSelectedHighlight()[0] + " - Column " + StateMachineController.instance.getSelectedHighlight()[1]);

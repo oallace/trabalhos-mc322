@@ -9,6 +9,33 @@ import mc322.lab07.view.Window;
 
 public abstract class SpecialsMovements {
 
+    // Movimento normal
+    public static void normalMovement(){
+        // Altera a posição da peça no Board e atualiza a imagem do tabuleiro.
+        Piece piece = StateMachineController.instance.getSelectedPiece();
+        piece.getSquare().setPiece(null);
+        Window.instance.actualizeSquareRepresentation(piece.getSquare().getPosition()[0], piece.getSquare().getPosition()[1], true);
+        piece.setSquare(Board.instance.getSquare(StateMachineController.instance.getSelectedHighlight()[0], StateMachineController.instance.getSelectedHighlight()[1]));
+        
+        // Come uma peça inimiga caso haja alguma na posição alvo.
+        if (piece.getSquare().getPiece() != null){
+            Piece deadPiece = piece.getSquare().getPiece();
+            System.out.println("The " + deadPiece.getName() + " was dead!");
+            deadPiece.getSquare().setPiece(null);
+            Window.instance.actualizeSquareRepresentation(deadPiece.getSquare().getPosition()[0], deadPiece.getSquare().getPosition()[1], true);
+            
+            // Retirar ela da array List do jogador, e adicionar um imageLabel na Window das peças capturadas do inimigo.
+            Board.instance.removeTeamPiece(deadPiece);
+        }
+
+        // Movimenta a peça para a posição alvo.
+        piece.getSquare().setPiece(piece);
+        piece.setWasMoved();
+        Window.instance.actualizeSquareRepresentation(piece.getSquare().getPosition()[0], piece.getSquare().getPosition()[1], true);
+    }
+
+
+
     // Movimento que altera as posições do rei e da torre
     public static void castlingMovement(){
         Piece king = StateMachineController.instance.getSelectedPiece();
@@ -43,9 +70,11 @@ public abstract class SpecialsMovements {
 
     // Movimento de promoção de peão
     public static void pawnPromotion(){
-        Piece pawn = StateMachineController.instance.getSelectedPiece();
+
+        normalMovement();
         
-        // Retira a peça do tabuleiro e atualiza a imagem
+        // Remover o peão do jogo
+        Piece pawn = StateMachineController.instance.getSelectedPiece();
         pawn.getSquare().setPiece(null);
         Window.instance.actualizeSquareRepresentation(pawn.getSquare().getPosition()[0], pawn.getSquare().getPosition()[1], true);
         Board.instance.removeTeamPiece(pawn);
@@ -54,18 +83,6 @@ public abstract class SpecialsMovements {
         Square highlightSquare = Board.instance.getSquare(StateMachineController.instance.getSelectedHighlight()[0], StateMachineController.instance.getSelectedHighlight()[1]);
         Piece queen = new Queen(StateMachineController.instance.getCurrentPlayer(), highlightSquare);
         Board.instance.addTeamPiece(StateMachineController.instance.getCurrentPlayer().getTeam(), queen);
-
-        // Remove alguma peça inimiga que estivesse naquela posição
-        if (highlightSquare.getPiece() != null){
-            Piece deadPiece = highlightSquare.getPiece();
-            System.out.println("The " + deadPiece.getName() + " was dead!");
-            deadPiece.getSquare().setPiece(null);
-            Window.instance.actualizeSquareRepresentation(deadPiece.getSquare().getPosition()[0], deadPiece.getSquare().getPosition()[1], true);
-            
-            // Retirar ela da array List do jogador, e adicionar um imageLabel na Window das peças capturadas do inimigo.
-            Board.instance.removeTeamPiece(deadPiece);
-        }
-
         queen.getSquare().setPiece(queen);
         Window.instance.actualizeSquareRepresentation(queen.getSquare().getPosition()[0], queen.getSquare().getPosition()[1], true);
     }
@@ -74,7 +91,13 @@ public abstract class SpecialsMovements {
 
     // Movimento de pulo duplo do peão
     public static void pawnDoubleMovement(){
+        Piece pawn = StateMachineController.instance.getSelectedPiece();
 
+        // Obter direção no eixo Y no peão e atualizando o moveType do próximo square para EnPassant
+        int yDirection = (StateMachineController.instance.getCurrentPlayer().getTeam() == "WhiteTeam") ? -1 : 1;
+        Board.instance.getSquare(pawn.getSquare().getPosition()[0] + yDirection, pawn.getSquare().getPosition()[1]).setMoveType(MoveType.EnPassantMovement);
+        
+        normalMovement();
     }
 
 
@@ -82,5 +105,21 @@ public abstract class SpecialsMovements {
     // Movimento de comer um peão EnPassant
     public static void enPassantMovement(){
 
+        normalMovement();
+
+        // Obtendo o square que se encontra o peão inimigo que deu pulo duplo
+        int yEnemyPawnDirection = (StateMachineController.instance.getCurrentPlayer().getTeam() == "WhiteTeam") ? 1 : -1;
+        Square enemyPawnSquare = Board.instance.getSquare(StateMachineController.instance.getSelectedHighlight()[0] + yEnemyPawnDirection, StateMachineController.instance.getSelectedHighlight()[1]);
+
+        // Remove alguma peça inimiga que estivesse naquela posição
+        if (enemyPawnSquare.getPiece() != null){
+            Piece deadPiece = enemyPawnSquare.getPiece();
+            System.out.println("The " + deadPiece.getName() + " was dead!");
+            deadPiece.getSquare().setPiece(null);
+            Window.instance.actualizeSquareRepresentation(deadPiece.getSquare().getPosition()[0], deadPiece.getSquare().getPosition()[1], true);
+            
+            // Retirar ela da array List do jogador, e adicionar um imageLabel na Window das peças capturadas do inimigo.
+            Board.instance.removeTeamPiece(deadPiece);
+        }
     }
 }

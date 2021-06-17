@@ -17,8 +17,6 @@ public class KnightMovement extends Movement{
         moves.addAll(getLMovement(1, 0));
         moves.addAll(getLMovement(-1, 0));
 
-        setNormalMovement(moves);
-
         return moves;
     }
 
