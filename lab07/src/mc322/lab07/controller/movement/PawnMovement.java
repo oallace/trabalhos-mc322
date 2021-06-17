@@ -21,6 +21,8 @@ public class PawnMovement extends Movement{
         moves.addAll(getPawnAttack(direction));
         setNormalMovement(moves);
 
+        // Analisa os movimentos válidos do peão. Se algum deles gerar uma promoção, atualiza o moveType do square no qual o peão irá se
+        // movimentar para PawnPromotionMovement
         for (int i = 0; i < moves.size(); i++){
             int[] position = moves.get(i);
             if (position[0] == 0 || position[0] == 7)

@@ -9,11 +9,12 @@ import mc322.lab07.view.Window;
 
 public class PieceMovementState extends State{   // Movimenta a peça e inicia o estado de fim de turno.
 
-    public void enter(){  // Analisa Qual será o tipo de movimento e executa o movimento necessário.
+    public void enter(){
         System.out.println("PieceMovementState:");
 
         MoveType moveType = Board.instance.getSquare(StateMachineController.instance.getSelectedHighlight()[0], StateMachineController.instance.getSelectedHighlight()[1]).getMoveType();
 
+        // Analisa qual será o tipo de movimento e executa o movimento necessário.
         if (moveType == MoveType.NormalMovement)
             normalMovement();
         
@@ -22,6 +23,12 @@ public class PieceMovementState extends State{   // Movimenta a peça e inicia o
         
         else if (moveType == MoveType.PawnPromotionMovement)
             SpecialsMovements.pawnPromotion();
+        
+        else if (moveType == MoveType.PawnDoubleMovement)
+            SpecialsMovements.pawnDoubleMovement();
+        
+        else if (moveType == MoveType.EnPassantMovement)
+            SpecialsMovements.enPassantMovement();
 
         
         StateMachineController.instance.changeTo(new TurnEndState());
@@ -51,5 +58,11 @@ public class PieceMovementState extends State{   // Movimenta a peça e inicia o
         piece.getSquare().setPiece(piece);
         piece.setWasMoved();
         Window.instance.atualizeSquareRepresentation(piece.getSquare().getPosition()[0], piece.getSquare().getPosition()[1], true);
+    }
+
+
+    // Percorre os Squares do jogador atual que possui algum EnPassant moveType e transforma em NormalMovement moveType
+    void clearEnPassants(){
+        
     }
 }

@@ -68,10 +68,11 @@ public class KingMovement extends Movement{
             currentSquare = Board.instance.getSquare(currentSquare.getPosition()[0], currentSquare.getPosition()[1]+xDirection);
         }
 
+        // Se chegou na borda do tabuleiro e não encontrou nenhuma peça
         if (currentSquare == null){
             return null;
         }
-        
+        // Se encontrar uma peça que não seja uma torre, ou se a torre já foi movida alguma vez
         if (!(currentSquare.getPiece() instanceof Rook) || currentSquare.getPiece().getWasMoved()){
             return null;
         }
