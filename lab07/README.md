@@ -13,7 +13,7 @@ Cada nação tem habilidades especiais que mudam drasticamente o fluxo da partid
 ## Vídeos do Projeto
 ### Vídeo da prévia
 
-<colocar vídeo>
+![Vídeo da prévia](./assets/about/preview_video.mkv)
 
 ## Slides do Projeto
 ### Slides da prévia
@@ -29,6 +29,6 @@ colocar slides
 * A **Máquina de Efeitos** recebe informações de uso de habilidades pelos jogadores e as configura no **Tabuleiro** e retorna informações sobre as habilidades que estão ativadas no momento.      
 * O **Jogador** representa um dos usuários do Jogo e contém informações relevantes como a Pontuação, a Nação ao qual ele pertence e as Habilidades que podem ser usadas.    
 * O **Tabuleiro** modela a plataforma de Xadrez e faz a comunicação com as **Casas**.    
-Cada **Casa** modela uma casa da plataforma de xadrez e possui informações como a **Peça** que está sobre ela e o **Efeito** ao qual ela está submetida.  
+* Cada **Casa** modela uma casa da plataforma de xadrez e possui informações como a **Peça** que está sobre ela e o **Efeito** ao qual ela está submetida.  
 * A **Peça** modela as peças do jogo de xadrez e possui instâncias de **Movimento**, o qual controla os movimentos das peças.    
 * Por fim, **Efeito** é um modelo dos efeitos de habilidades do jogo.
