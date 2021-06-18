@@ -25,7 +25,7 @@ Cada peça comida por um jogador possui um valor que será somado à sua pontua�
 * Rainha: 9 pontos
 
 #### Habilidades
-Cada nação terá uma *Habilidade Básica* e uma *Habilidade Principal* que podem ser usadas durante a partida. Cada habilidade possui um custo que deve ser descontado da pontuação do jogador para que seja utilizada. A *Habilidade Básica* custa 5 pontos e a *Habilidade Principal* custa 12 pontos.
+Cada nação terá uma *Habilidade Básica* e uma *Habilidade Especial* que podem ser usadas durante a partida. Cada habilidade possui um custo que deve ser descontado da pontuação do jogador para que seja utilizada. A *Habilidade Básica* custa 5 pontos e a *Habilidade Especial* custa 12 pontos.
 
 ### Nações
 #### Nação de Gelo
