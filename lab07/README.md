@@ -1,7 +1,7 @@
 # Projeto <Título>
 Versão em construção do trabalho final de MC322, na UNICAMP.  
 
-**Até o momento** a Interface Gráfica foi implementada junto com o conjunto básico de peças e seus movimentos. Além disso, outros movimentos especiais do xadrez como o Roque, a Promoção de Peão e a captura *en passant*. A Máquina de Estados também já foi desenvolvida. Falta a contrução da Máquina de Efeitos e as análises de Xeque e Xeque-Mate. O jogo até então pode ser testado executando-se a classe *mc322.lab07.AppChess*.  
+**Até o momento** a Interface Gráfica foi implementada junto com o conjunto básico de peças e seus movimentos. Além disso, outros movimentos especiais do xadrez como o Roque, a Promoção de Peão e a captura *en passant*. A Máquina de Estados também já foi desenvolvida. Falta a contrução da Máquina de Efeitos e as análises de Xeque e Xeque-Mate. O jogo até então pode ser testado executando-se a classe *mc322.lab07.AppChess* em [out/production/lab07](./out/production/lab07).  
 
 O código do projeto pode ser encontrado em [src/mc322/lab07](./src/mc322/lab07).
 
