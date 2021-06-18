@@ -1,10 +1,15 @@
 # Projeto <Título>
 Versão em construção do trabalho final de MC322, na UNICAMP.  
+
 **Até o momento** a Interface Gráfica foi implementada junto com o conjunto básico de peças e seus movimentos. Além disso, outros movimentos especiais do xadrez como o Roque, a Promoção de Peão e a captura *en passant*. A Máquina de Estados também já foi desenvolvida. Falta a contrução da Máquina de Efeitos e as análises de Xeque e Xeque-Mate.   
+
 O código do projeto pode ser encontrado em [src/mc322/lab07](./src/mc322/lab07).
+
+
 
 ## Descrição
 Uma partida de xadrez não é mais apenas uma batalha entre peças brancas e peças pretas, agora é uma batalha entre nações.  
+
 Cada nação tem habilidades especiais que mudam drasticamente o fluxo da partida. Você não precisa se preocupar com o próximo movimento de uma peça se ela estiver congelada!  
 
 
@@ -30,6 +35,8 @@ Cada nação terá uma *Habilidade Básica* e uma *Habilidade Principal* que pod
 * *Habilidade Básica:* Levanta uma muralha de pedra na casa selecionada. A casa selecionada não pode possuir nenhuma peça sobre ela no momento de uso da habilidade. Nenhuma peça, exceto pelo cavalo, pode realizar um movimento que passe por uma casa que possua uma muralha de pedra. O efeito dura 1 turno.
 * *Habilidade Especial:* Levanta uma muralha de pedra de 5 casas de comprimento. As peças dentro da muralha não podem se mover e nenhuma outra peça pode saltar a muralha. Dura 2 turnos.
 
+
+
 ## Equipe
 * Igor Henrique Buranello dos Santos - RA 171953
 * Wallace Gustavo Santos Lima - RA 195512
@@ -37,11 +44,18 @@ Cada nação terá uma *Habilidade Básica* e uma *Habilidade Principal* que pod
 ## Vídeos do Projeto
 ### ![Vídeo da prévia](./assets/about/preview_video.mkv)
 
+
+
 ## Slides do Projeto
 ### ![Slides da prévia](./assets/about/preview_slides.pdf)
 
+
+
+
 ## Documentação dos Componentes
+
 ## Diagramas
+
 ### Diagrama Geral do Projeto
 ![Diagrama Geral do Projeto](./assets/about/general_diagram.png)  
 * A **Interface Gráfica** deve fazer a ponte entre os usuários e o jogo em si. Ela recebe comandos (por meio de cliques com o *mouse*) e os comunica para a **Máquina de Estados**.    
