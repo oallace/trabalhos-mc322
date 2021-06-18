@@ -1,10 +1,34 @@
 # Projeto <Título>
 Versão em construção do trabalho final de MC322, na UNICAMP.  
-O código do projeto desenvolvido até então pode ser encontrado em [src/mc322/lab07](./src/mc322/lab07).
+**Até o momento** a Interface Gráfica foi implementada junto com o conjunto básico de peças e seus movimentos. Além disso, outros movimentos especiais do xadrez como o Roque, a Promoção de Peão e a captura *en passant*. A Máquina de Estados também já foi desenvolvida. Falta a contrução da Máquina de Efeitos e as análises de Xeque e Xeque-Mate.   
+O código do projeto pode ser encontrado em [src/mc322/lab07](./src/mc322/lab07).
 
 ## Descrição
-Uma partida de xadrez não é mais apenas uma batalha entre peças brancas e peças pretas, agora é uma batalha entre nações.
-Cada nação tem habilidades especiais que mudam drasticamente o fluxo da partida. Você não precisa se preocupar com o próximo movimento de uma peça se ela estiver congelada!
+Uma partida de xadrez não é mais apenas uma batalha entre peças brancas e peças pretas, agora é uma batalha entre nações.  
+Cada nação tem habilidades especiais que mudam drasticamente o fluxo da partida. Você não precisa se preocupar com o próximo movimento de uma peça se ela estiver congelada!  
+
+
+### Fluxo do Jogo
+O jogo tem como base uma partida de xadrez entre duas nações, entretanto cada nação possui habilidades especiais que alteram um pouco a lógica do jogo original. Ganha o jogo quem der Xeque-Mate no oponente. 
+
+#### Pontuação
+Cada peça comida por um jogador possui um valor que será somado à sua pontuação, sendo:
+* Peão: 1 ponto
+* Cavalo: 3 pontos
+* Bispo: 3 pontos
+* Torre: 5 pontos
+* Rainha: 9 pontos
+
+#### Habilidades
+Cada nação terá uma *Habilidade Básica* e uma *Habilidade Principal* que podem ser usadas durante a partida. Cada habilidade possui um custo que deve ser descontado da pontuação do jogador para que seja utilizada. A *Habilidade Básica* custa 5 pontos e a *Habilidade Principal* custa 12 pontos.
+
+### Nações
+#### Nação de Gelo
+* *Habilidade Básica:* Congela a casa selecionada. As peças sobre casas congeladas não podem se mover. Dura 1 turno.
+* *Habilidade Especial:* Congela a casa selecionada e as suas casas imediatamente vizinhas. A casa selecionada fica congelada por 3 turnos e as suas vizinhas por 1 turno.
+#### Nação de Pedra
+* *Habilidade Básica:* Levanta uma muralha de pedra na casa selecionada. A casa selecionada não pode possuir nenhuma peça sobre ela no momento de uso da habilidade. Nenhuma peça, exceto pelo cavalo, pode realizar um movimento que passe por uma casa que possua uma muralha de pedra. O efeito dura 1 turno.
+* *Habilidade Especial:* Levanta uma muralha de pedra de 5 casas de comprimento. As peças dentro da muralha não podem se mover e nenhuma outra peça pode saltar a muralha. Dura 2 turnos.
 
 ## Equipe
 * Igor Henrique Buranello dos Santos - RA 171953
@@ -15,8 +39,6 @@ Cada nação tem habilidades especiais que mudam drasticamente o fluxo da partid
 
 ## Slides do Projeto
 ### ![Slides da prévia](./assets/about/preview_slides.pdf)
-
-colocar slides
 
 ## Documentação dos Componentes
 ## Diagramas
