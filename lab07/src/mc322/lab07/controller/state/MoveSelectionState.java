@@ -17,7 +17,7 @@ public class MoveSelectionState extends State{  // Estado de seleção de movime
 		System.out.println("MoveSelectionState:");
 
 		// Obtém os movimentos válidos para aquela paça.
-		moves = StateMachineController.instance.getSelectedPiece().getMovement().getValidMoves();
+		moves = StateMachineController.instance.getSelectedPiece().getMovement().getValidMoves(true, StateMachineController.instance.getSelectedPiece());
 		
 		// Caso não haja movimento para aquela peça (peça travada), retorna para o estado de seleção de peça.
 		if (moves.size() == 0){
