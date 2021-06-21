@@ -57,22 +57,26 @@ public class Board {
 	
 	// Adiciona uma peça ao ArrayList do time
 	public void addTeamPiece(String team, Piece piece) {
-		if (team == "WhiteTeam") {
-			this.whitePieces.add(piece);
-		}
-		else {
-			this.blackPieces.add(piece);
+		if (piece != null){
+			if (team == "WhiteTeam") {
+				this.whitePieces.add(piece);
+			}
+			else {
+				this.blackPieces.add(piece);
+			}
 		}
 	}
 
 	// Remove uma peça do ArrayList do time
 	public void removeTeamPiece(Piece piece){
-		ArrayList<Piece> teamPieces = Board.instance.getTeamPieces(piece.getPlayer().getTeam());
+		if (piece != null){
+			ArrayList<Piece> teamPieces = Board.instance.getTeamPieces(piece.getPlayer().getTeam());
 
-		for (int i = 0; i < teamPieces.size(); i++){
-			if (teamPieces.get(i) == piece){
-				teamPieces.remove(i);
-				break;
+			for (int i = 0; i < teamPieces.size(); i++){
+				if (teamPieces.get(i) == piece){
+					teamPieces.remove(i);
+					break;
+				}
 			}
 		}
 	}

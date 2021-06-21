@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import mc322.lab07.controller.StateMachineController;
 import mc322.lab07.model.Board;
 import mc322.lab07.model.Player;
+import mc322.lab07.model.pieces.King;
 import mc322.lab07.model.pieces.Pawn;
 import mc322.lab07.model.pieces.Piece;
 import mc322.lab07.model.squares.Square;
@@ -98,6 +99,45 @@ public abstract class Movement {
 
     // Analisa se um movimento é seguro
     boolean isSafeMovement(Piece piece, int[] movement, Player enemyPlayer){
-        return true;
+        // Obtem o square em que a peça esta, para depois da analise do movimento, colocá-la nele novamente
+        Square currentPieceSquare = piece.getSquare();
+        currentPieceSquare.setPiece(null);
+
+        // Caso haja alguma peça inimiga no square para o qual a peça quer se movimentar, guarda essa peça inimiga, para após a análise
+        // do movimento, colocá-la novamente no movementSquare.
+        Square movementSquare = Board.instance.getSquare(movement[0], movement[1]);
+        Piece enemyPiece = movementSquare.getPiece();
+        Board.instance.removeTeamPiece(enemyPiece);
+
+        // Coloca a peça da qual o movimento está sendo analisado no movementSquare.
+        movementSquare.setPiece(piece);
+        piece.setSquare(movementSquare);
+
+        // Obter o rei do time da peça que esta tendo o movimento analisado
+        Piece king = null;
+        ArrayList<Piece> pieces = Board.instance.getTeamPieces(piece.getPlayer().getTeam());
+        for (int i = 0; i < pieces.size(); i++){
+            if (pieces.get(i) instanceof King){
+                king = pieces.get(i);
+                break;
+            }
+        }
+
+        // Analisa se é seguro ou não o movimento
+        boolean safe = true;
+        if (king != null && isSquareAttacked(enemyPlayer, king.getSquare())){
+            safe = false;
+        }
+
+        // Adiciona novamente a possível peça inimiga ao tabuleiro
+        Board.instance.addTeamPiece(enemyPlayer.getTeam(), enemyPiece);
+        movementSquare.setPiece(enemyPiece);
+
+        // Retorna a peça que teve o movimento analisado para o square original
+        piece.setSquare(currentPieceSquare);
+        currentPieceSquare.setPiece(piece);
+
+
+        return safe;
     }
 }
