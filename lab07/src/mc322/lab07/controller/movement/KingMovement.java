@@ -2,7 +2,9 @@ package mc322.lab07.controller.movement;
 
 import java.util.ArrayList;
 
+import mc322.lab07.controller.StateMachineController;
 import mc322.lab07.model.Board;
+import mc322.lab07.model.Player;
 import mc322.lab07.model.pieces.Piece;
 import mc322.lab07.model.pieces.Rook;
 import mc322.lab07.model.squares.Square;
@@ -25,10 +27,10 @@ public class KingMovement extends Movement{
         // Retira da lista moves os squares que estão sendo atacados por alguma peça inimiga.
         if (safeMovements){
             getSafeMovements(moves, piece);
-        }
 
-        // Obter novas posições para o movimento do Rei caso o castling seja uma escolha possível
-        moves.addAll(castling(piece));
+            // Obter novas posições para o movimento do Rei caso o castling seja uma escolha possível
+            moves.addAll(castling(piece));
+        }
 
         return moves;
     }
@@ -62,9 +64,10 @@ public class KingMovement extends Movement{
     int[] checkRook(int xDirection, Piece piece){
         Square currentSquare = piece.getSquare();
         currentSquare = Board.instance.getSquare(currentSquare.getPosition()[0], currentSquare.getPosition()[1]+xDirection);
+        Player enemyPlayer = (piece.getPlayer() == StateMachineController.instance.getPlayer1()) ? StateMachineController.instance.getPlayer2() : StateMachineController.instance.getPlayer1();
 
         while (currentSquare != null){
-            if (currentSquare.getPiece() != null){
+            if (currentSquare.getPiece() != null || isSquareAttacked(enemyPlayer, currentSquare)){
                 break;
             }
 
@@ -77,6 +80,14 @@ public class KingMovement extends Movement{
         }
         // Se encontrar uma peça que não seja uma torre, ou se a torre já foi movida alguma vez
         if (!(currentSquare.getPiece() instanceof Rook) || currentSquare.getPiece().getWasMoved()){
+            return null;
+        }
+        // Se a posição esta atacada, não é possível fazer o castling
+        if (isSquareAttacked(enemyPlayer, currentSquare)){
+            return null;
+        }
+        // Se o rei está atacado, não é possível fazer o castling.
+        if (isSquareAttacked(enemyPlayer, piece.getSquare())){
             return null;
         }
 

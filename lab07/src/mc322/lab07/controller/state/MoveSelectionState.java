@@ -41,7 +41,7 @@ public class MoveSelectionState extends State{  // Estado de seleção de movime
 			Window.instance.actualizeSquareRepresentation(moves.get(i)[0], moves.get(i)[1], false);
 
 			// Caso haja algum square com moveType especial que não seja o square selecionado, atualiza o moveType para NormalMovement
-			if (square.getMoveType() != MoveType.NormalMovement && square != Board.instance.getSquare(StateMachineController.instance.getSelectedHighlight()[0], StateMachineController.instance.getSelectedHighlight()[1]))
+			if (square.getMoveType() != MoveType.NormalMovement && square.getMoveType() != MoveType.EnPassantMovement && square != Board.instance.getSquare(StateMachineController.instance.getSelectedHighlight()[0], StateMachineController.instance.getSelectedHighlight()[1]))
 				square.setMoveType(MoveType.NormalMovement);
 		}
 
